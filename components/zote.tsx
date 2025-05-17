@@ -65,28 +65,25 @@ export const Zote: React.FC = () => {
 
     }
     return (
-        <div className="font-sans max-w-3xl p-6 mx-auto">
-            <h2 className="text-3xl font-black tracking-tighter mb-6">zsh ocodo theme editor</h2>
-
+        <div className="max-w-3xl p-6 mx-auto">
+            <h2 className="text-3xl font-black tracking-tighter mb-6">zote: zsh ocodo prompt theme editor</h2>
+            <div className="bg-black text-white rounded-xl border border-zinc-700 p-4 my-4">
+                <ZotePromptPreview colors={colors} host={selectedTheme.toLowerCase()} />
+            </div>
+            <ZotePresetSelector
+                selected={selectedTheme}
+                onSelect={handlePresetSelect}
+                customColors={customColors}
+            />
             <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-4 m-6">
                 {visibleColorKeys.map(key => (
-                    <ColorPickerRow
+                    <ZoteColorPickerRow
                         key={key}
                         label={key}
                         value={colors[key]}
                         onChange={value => handleColorChange(key, value)}
                     />
                 ))}
-            </div>
-            {/* ZotePresetSelector with selected and onSelect */}
-            <ZotePresetSelector
-                selected={selectedTheme}
-                onSelect={handlePresetSelect}
-                customColors={customColors}
-            />
-            <h3 className="text-xl font-semibold mt-10 mb-2">Preview</h3>
-            <div className="bg-black text-white rounded-xl border border-zinc-700 p-4 my-4">
-                <PromptPreview colors={colors} />
             </div>
             <ZoteExportThemeDialog colors={colors} defaultName={selectedTheme} />
         </div>
@@ -97,7 +94,7 @@ export const Zote: React.FC = () => {
 // Subcomponents
 // ─────────────────────────────────────────────────────────────────────────────
 
-type ColorPickerRowProps = {
+type ZoteColorPickerRowProps = {
     label: string
     value: string
     onChange: (newColor: string) => void
@@ -105,7 +102,7 @@ type ColorPickerRowProps = {
 
 import { useRef } from "react";
 
-const ColorPickerRow: React.FC<ColorPickerRowProps> = ({ label, value, onChange }) => {
+const ZoteColorPickerRow: React.FC<ZoteColorPickerRowProps> = ({ label, value, onChange }) => {
     const inputRef = useRef<HTMLInputElement>(null);
 
     const handleClick = () => {
@@ -148,11 +145,12 @@ const ColorPickerRow: React.FC<ColorPickerRowProps> = ({ label, value, onChange 
 };
 
 
-type PromptPreviewProps = {
+type ZotePromptPreviewProps = {
     colors: ColorState
+    host: string
 }
 
-const PromptPreview: React.FC<PromptPreviewProps> = ({ colors }) => {
+const ZotePromptPreview: React.FC<ZotePromptPreviewProps> = ({ colors, host }) => {
     const { BracketColor: Bc, NameColor: Nc, MachineColor: Mc, TimeColor: Tc, PathColor: Pc } = colors
 
     return (
@@ -162,7 +160,7 @@ const PromptPreview: React.FC<PromptPreviewProps> = ({ colors }) => {
                 <span style={{ color: Bc }}>% </span>
                 <span style={{ color: Nc }}>jason</span>
                 <span style={{ color: Bc }}>@</span>
-                <span style={{ color: Mc }}>neptune</span>
+                <span style={{ color: Mc }}>{host}</span>
                 <span style={{ color: Bc }}>|</span>
                 <span style={{ color: Tc }}>09:11AM</span>
                 <span style={{ color: Bc }}>]</span>

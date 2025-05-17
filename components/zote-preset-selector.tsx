@@ -36,7 +36,7 @@ export const ZotePresetSelector: React.FC<ZotePresetSelectorProps> = ({
 
   return (
     <div className="mb-6">
-      <label className="block text-sm font-medium mb-2">Select a Theme Preset</label>
+      <div className="font-bold mb-2">Presets</div>
       {/* Shadcn Dialog Wrapper */}
       <Dialog open={open} onOpenChange={setOpen}>
         {/* Dialog Trigger Button */}

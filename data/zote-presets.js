@@ -62,13 +62,13 @@ export const zotePresets = [
     {
         themeName: "Neptune",
         colors: {
-            BracketColor: "#005f5f",
+            BracketColor: "#865e3c",
             NameColor: "#ffffff",
-            MachineColor: "#5fd7ff",
-            TimeColor: "#ffffff",
-            DateColor: "#5fd7ff",
-            PathColor: "#5fd7ff",
-            RVM_Color: "#87d7d7"
+            MachineColor: "#deddda",
+            TimeColor: "#ffaa00",
+            DateColor: "#ff9900",
+            PathColor: "#888888",
+            RVM_Color: "#aaaaaa"
         }
     },
     {
@@ -98,13 +98,13 @@ export const zotePresets = [
     {
         themeName: "Polaris",
         colors: {
-            BracketColor: "#626262",
-            NameColor: "#87d7d7",
-            MachineColor: "#ffffff",
-            TimeColor: "#dadada",
-            DateColor: "#8a8a8a",
-            PathColor: "#eeeeee",
-            RVM_Color: "#ff5f00"
+            BracketColor: "#363327",
+            MachineColor: "#6A5D59",
+            NameColor: "#82736D",
+            TimeColor: "#448B93",
+            DateColor: "#735C65",
+            PathColor: "#454343",
+            RVM_Color: "#735C65"
         }
     },
     {
@@ -165,18 +165,6 @@ export const zotePresets = [
             DateColor: "#ffffff",
             PathColor: "#ffdf87",
             RVM_Color: "#ffaf00"
-        }
-    },
-    {
-        themeName: "Nebula",
-        colors: {
-            BracketColor: "#865e3c",
-            NameColor: "#ffffff",
-            MachineColor: "#deddda",
-            TimeColor: "#ffaa00",
-            DateColor: "#ff9900",
-            PathColor: "#888888",
-            RVM_Color: "#aaaaaa"
         }
     },
     {

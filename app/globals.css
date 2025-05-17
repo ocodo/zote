@@ -35,6 +35,14 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "OcodoMono";
+  src: url("/fonts/OcodoMonoNerdFont-Regular.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Light mode variables */
 :root {
   --background: 0 0% 100%;
@@ -64,6 +72,7 @@
   }
 
   body {
+    font-family: "HelveticaNeue", sans-serif;
     @apply bg-white text-black;
   }
 
@@ -115,4 +124,12 @@
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.font-mono {
+  font-family: OcodoMono;
+}
+
+.font-sans {
+  font-family: HelveticaNeue;
 }

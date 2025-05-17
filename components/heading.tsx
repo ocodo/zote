@@ -16,7 +16,7 @@ function Heading(props: HeadingProps) {
       <Button variant="ghost" size="icon" onClick={() => toast("Not implemented")}>
         <Menu className="h-6 w-6" />
       </Button>
-      <h1 className="text-5xl font-black tracking-tighter">{title}</h1>
+      <h1 className="text-6xl font-black tracking-tighter">{title}</h1>
       <Button
         variant="ghost"
         size="icon"
