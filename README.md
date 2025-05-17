@@ -4,9 +4,11 @@
 
 ## https://zote.hub
 
-![](dark-main.png)
+![](zote1.png)
 
-![](dark-export-copy.png)
+![](zote2.png)
+
+![](zote3.png)
 
 - - -
 

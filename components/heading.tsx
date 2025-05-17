@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button'
 import { Menu, Moon, Sun } from 'lucide-react'
 import { toast } from 'sonner'
+import { ZoteIcon } from './zote-icon'
 
 interface HeadingProps {
   setTheme: (theme: string) => void
@@ -16,7 +17,10 @@ function Heading(props: HeadingProps) {
       <Button variant="ghost" size="icon" onClick={() => toast("Not implemented")}>
         <Menu className="h-6 w-6" />
       </Button>
+      <div className='flex items-center'>
+      <ZoteIcon width={'4rem'} height={'4rem'} />
       <h1 className="text-6xl font-black tracking-tighter">{title}</h1>
+      </div>
       <Button
         variant="ghost"
         size="icon"

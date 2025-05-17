@@ -1,6 +1,6 @@
 {
-    "name": ".hub",
-    "short_name": "Template",
+    "name": "zote.hub",
+    "short_name": "zote",
     "icons": [
       {
         "src": "/android-chrome-192x192.png",
