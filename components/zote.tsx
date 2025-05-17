@@ -151,24 +151,24 @@ type ZotePromptPreviewProps = {
 }
 
 const ZotePromptPreview: React.FC<ZotePromptPreviewProps> = ({ colors, host }) => {
-    const { BracketColor: Bc, NameColor: Nc, MachineColor: Mc, TimeColor: Tc, PathColor: Pc } = colors
+    const { BracketColor, NameColor, MachineColor, TimeColor, PathColor } = colors
 
     return (
         <div className="font-mono text-lg leading-relaxed">
             <div>
-                <span style={{ color: Bc }}>[</span>
-                <span style={{ color: Bc }}>% </span>
-                <span style={{ color: Nc }}>ocodo</span>
-                <span style={{ color: Bc }}>@</span>
-                <span style={{ color: Mc }}>{host}</span>
-                <span style={{ color: Bc }}>|</span>
-                <span style={{ color: Tc }}>09:11AM</span>
-                <span style={{ color: Bc }}>]</span>
+                <span style={{ color: BracketColor }}>[</span>
+                <span style={{ color: BracketColor }}>% </span>
+                <span style={{ color: NameColor }}>ocodo</span>
+                <span style={{ color: BracketColor }}>@</span>
+                <span style={{ color: MachineColor }}>{host}</span>
+                <span style={{ color: BracketColor }}>|</span>
+                <span style={{ color: TimeColor }}>09:11AM</span>
+                <span style={{ color: BracketColor }}>]</span>
             </div>
             <div>
-                <span style={{ color: Bc }}>[</span>
-                <span style={{ color: Pc }}>~/workspace/zote</span>
-                <span style={{ color: Bc }}>]</span>
+                <span style={{ color: BracketColor }}>[</span>
+                <span style={{ color: PathColor }}>~/workspace/zote</span>
+                <span style={{ color: BracketColor }}>]</span>
             </div>
         </div>
     )

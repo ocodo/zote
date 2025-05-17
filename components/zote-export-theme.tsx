@@ -15,37 +15,9 @@ export const ZoteExportThemeDialog: React.FC<ZoteExportThemeDialogProps> = ({ co
 
     const exportContent = `# Theme name: ${themeName}
 
-${Object.entries(colors)
-            .map(([key, value]) => {
-                const comment = {
-                    BracketColor: 'bracket color',
-                    NameColor: 'user color',
-                    MachineColor: 'host color',
-                    TimeColor: 'time color',
-                    DateColor: 'date color',
-                    PathColor: 'path color',
-                    RVM_Color: 'rvm color'
-                }[key] || ''
-
-                const shortKey = {
-                    BracketColor: 'Bc',
-                    NameColor: 'Nc',
-                    MachineColor: 'Mc',
-                    TimeColor: 'Tc',
-                    DateColor: 'Dc',
-                    PathColor: 'Pc',
-                    RVM_Color: 'RVMc'
-                }[key]
-
-                return `${shortKey}="${value}"   # ${comment}`
-            })
-            .join('\n')}
+${Object.entries(colors).map(([key, value]) => `${key}="${value}"`).join('\n')}
 
 source ~/.zsh.d/lib/theme-engine-truecolor.zsh
-
-# Local Variables:
-# eval: (when (fboundp 'rainbow-mode) (rainbow-mode +1))
-# End:
 `
 
     const handleCopyToClipboard = async () => {
