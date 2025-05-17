@@ -173,19 +173,3 @@ const ZotePromptPreview: React.FC<ZotePromptPreviewProps> = ({ colors, host }) =
         </div>
     )
 }
-
-type ShellExportProps = {
-    colors: ColorState
-}
-
-const ShellExport: React.FC<ShellExportProps> = ({ colors }) => {
-    const exportString = Object.entries(colors)
-        .map(([key, value]) => `${key}="${value}"`)
-        .join('\n')
-
-    return (
-        <pre className="bg-zinc-800 text-green-400 text-sm p-4 rounded-lg whitespace-pre-wrap">
-            {exportString}
-        </pre>
-    )
-}
