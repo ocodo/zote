@@ -12,12 +12,16 @@
 
 # Install
 
+Clone the repo and `cd zote` then:
+
 `npm install`
 
 # Run
 
+in `./zote`
+
 ```
-npx next -H 0.0.0.0 -p 78174
+npx next
 ```
 - - -
 
