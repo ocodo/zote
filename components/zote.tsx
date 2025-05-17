@@ -31,6 +31,8 @@ const visibleColorKeys: (keyof ColorState)[] = [
     'MachineColor',
     'TimeColor',
     'PathColor',
+    'DateColor',
+    'RVM_Color'
 ]
 
 export const Zote: React.FC = () => {
