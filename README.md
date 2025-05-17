@@ -1,4 +1,12 @@
-# React/NextJS/Tailwind/Shadcn Template
+# ZOTE
+
+**Z**sh **o**codo prompt **t**heme **e**ditor
+
+## https://zote.hub
+
+![](dark-main.png)
+
+![](dark-export-copy.png)
 
 - - -
 
@@ -9,16 +17,22 @@
 # Run
 
 ```
-npx next -p 7676 -H 0.0.0.0
+npx next -H 0.0.0.0 -p 78174
 ```
-
-Where `-p` is the IP port and `-H` specifies the network interface to bind,`0.0.0.0` binds to all interfaces.
 
 - - -
 
 # Run as a service
 
 Systemd service should run `bin/service.sh` with the working directory as the project root.
+
+# Proxy forward
+
+It's reverse proxy is in helios `/etc/lighttpd/conf-enabled/10-zote-rev-proxy.conf`
+
+# DNS Entry
+
+in https://pi.hole/admin/dns_records.php 
 
 - - -
 

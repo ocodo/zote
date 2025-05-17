@@ -66,7 +66,7 @@ export const Zote: React.FC = () => {
         <div className="font-sans max-w-3xl p-6 mx-auto">
             <h2 className="text-3xl font-black tracking-tighter mb-6">zsh ocodo theme editor</h2>
 
-            <div className="grid gap-4">
+            <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-4 m-6">
                 {visibleColorKeys.map(key => (
                     <ColorPickerRow
                         key={key}
@@ -76,25 +76,17 @@ export const Zote: React.FC = () => {
                     />
                 ))}
             </div>
-
             {/* ZotePresetSelector with selected and onSelect */}
             <ZotePresetSelector
                 selected={selectedTheme}
                 onSelect={handlePresetSelect}
                 customColors={customColors}
             />
-
             <h3 className="text-xl font-semibold mt-10 mb-2">Preview</h3>
-            <div className="bg-zinc-900 text-white rounded-xl border border-zinc-700 p-4 my-4">
+            <div className="bg-black text-white rounded-xl border border-zinc-700 p-4 my-4">
                 <PromptPreview colors={colors} />
             </div>
-
-
             <ZoteExportThemeDialog colors={colors} defaultName={selectedTheme} />
-
-
-            <h3 className="text-xl font-semibold mt-8 mb-2">Shell Export</h3>
-            <ShellExport colors={colors} />
         </div>
     )
 }
@@ -109,20 +101,50 @@ type ColorPickerRowProps = {
     onChange: (newColor: string) => void
 }
 
+import { useRef } from "react";
+
 const ColorPickerRow: React.FC<ColorPickerRowProps> = ({ label, value, onChange }) => {
+    const inputRef = useRef<HTMLInputElement>(null);
+
+    const handleClick = () => {
+        inputRef.current?.click();
+    };
+
     return (
-        <Card className="flex items-center gap-4 p-4 shadow-md hover:shadow-lg rounded-md">
-            <label className="w-36 text-sm font-medium">{label}:</label>
+        <Card className="p-4 shadow-md hover:shadow-lg rounded-md flex flex-col justify-center items-center">
+            <div className="text-sm font-medium mb-2">{label}</div>
+            <div className="ml-2 font-mono text-sm mb-2">{value}</div>
+
+            <div className="w-12 h-12" onClick={handleClick} style={{ color: value }}>
+                <svg
+                    viewBox="0 0 48 48"
+                    className="w-full h-full cursor-pointer"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-label={`Select color ${value}`}
+                    role="button"
+                >
+                    <circle
+                        cx="24"
+                        cy="24"
+                        r="22"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        fill="currentColor"
+                    />
+                </svg>
+            </div>
+
             <input
+                ref={inputRef}
                 type="color"
-                className="w-12 h-12 rounded-full border-none cursor-pointer"
                 value={value}
                 onChange={e => onChange(e.target.value)}
+                className="hidden"
             />
-            <span className="ml-2 font-mono text-sm">{value}</span>
         </Card>
-    )
-}
+    );
+};
+
 
 type PromptPreviewProps = {
     colors: ColorState

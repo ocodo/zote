@@ -57,6 +57,9 @@ const config: Config = {
         md: "0.375rem",
         sm: "0.25rem",
       },
+      screens: {
+        xs: '360px'
+      },
     },
   },
   plugins: [],

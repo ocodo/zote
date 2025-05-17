@@ -85,15 +85,7 @@ source ~/.zsh.d/lib/theme-engine-truecolor.zsh
 
                 <div className="space-y-1 bg-zinc-900 text-green-400 font-mono text-sm p-4 rounded-md border border-zinc-700 whitespace-pre-wrap">
                     {Object.entries(colors).map(([key, value]) => {
-                        const label = {
-                            BracketColor: 'Bc',
-                            NameColor: 'Nc',
-                            MachineColor: 'Mc',
-                            TimeColor: 'Tc',
-                            DateColor: 'Dc',
-                            PathColor: 'Pc',
-                            RVM_Color: 'RVMc'
-                        }[key]
+                        const label = key
 
                         return (
                             <div key={key} className="flex items-center gap-2">
