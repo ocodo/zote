@@ -158,7 +158,7 @@ const ZotePromptPreview: React.FC<ZotePromptPreviewProps> = ({ colors, host }) =
             <div>
                 <span style={{ color: Bc }}>[</span>
                 <span style={{ color: Bc }}>% </span>
-                <span style={{ color: Nc }}>jason</span>
+                <span style={{ color: Nc }}>ocodo</span>
                 <span style={{ color: Bc }}>@</span>
                 <span style={{ color: Mc }}>{host}</span>
                 <span style={{ color: Bc }}>|</span>

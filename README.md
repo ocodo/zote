@@ -2,11 +2,17 @@
 
 **Z**sh **o**codo prompt **t**heme **e**ditor
 
-![](zote1.png)
+![](zote_00.png)
 
-![](zote2.png)
+![](zote_01.png)
 
-![](zote3.png)
+![](zote_02.png)
+
+![](zote_03.png)
+
+![](zote_04.png)
+
+![](zote_05.png)
 
 - - -
 
