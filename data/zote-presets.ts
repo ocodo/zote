@@ -1,38 +1,27 @@
-export const zotePresets = [
-    {
-        themeName: "Cobalt",
-        colors: {
-            BracketColor: "#3a3a3a",
-            NameColor: "#ff5f00",
-            MachineColor: "#b2b2b2",
-            TimeColor: "#ffffff",
-            DateColor: "#585858",
-            PathColor: "#585858",
-            RVM_Color: "#ff5f00"
-        }
-    },
+export interface ZotePreset {
+    themeName: string;
+    colors: {
+        BracketColor: string;
+        NameColor: string;
+        MachineColor: string;
+        TimeColor: string;
+        DateColor: string;
+        PathColor: string;
+        RVM_Color: string;
+    };
+}
+
+export const zotePresets: ZotePreset[] = [
     {
         themeName: "Helios",
         colors: {
-            BracketColor: "#005f5f",
-            NameColor: "#00d7d7",
-            MachineColor: "#00d7d7",
-            TimeColor: "#ffffff",
-            DateColor: "#0087af",
-            PathColor: "#0087af",
-            RVM_Color: "#00d7d7"
-        }
-    },
-    {
-        themeName: "Iridium",
-        colors: {
-            BracketColor: "#87d7ff",
-            NameColor: "#ffffff",
-            MachineColor: "#5fd7ff",
-            TimeColor: "#ffffff",
-            DateColor: "#ffdf87",
-            PathColor: "#5fd7ff",
-            RVM_Color: "#ffdf87"
+            BracketColor: "#005f7f",
+            NameColor: "#66d7ef",
+            MachineColor: "#55a7bf",
+            TimeColor: "#66d7e7",
+            DateColor: "#66a7bf",
+            PathColor: "#55a7bf",
+            RVM_Color: "#aad7d7",
         }
     },
     {
@@ -44,7 +33,7 @@ export const zotePresets = [
             TimeColor: "#ffffff",
             DateColor: "#5fd7ff",
             PathColor: "#5fd7ff",
-            RVM_Color: "#87d7d7"
+            RVM_Color: "#87d7d7",
         }
     },
     {
@@ -56,7 +45,7 @@ export const zotePresets = [
             TimeColor: "#dadada",
             DateColor: "#8a8a8a",
             PathColor: "#eeeeee",
-            RVM_Color: "#ff5f00"
+            RVM_Color: "#ff5f00",
         }
     },
     {
@@ -68,7 +57,7 @@ export const zotePresets = [
             TimeColor: "#ffaa00",
             DateColor: "#ff9900",
             PathColor: "#888888",
-            RVM_Color: "#aaaaaa"
+            RVM_Color: "#aaaaaa",
         }
     },
     {
@@ -80,7 +69,7 @@ export const zotePresets = [
             TimeColor: "#ffffff",
             DateColor: "#5fd7ff",
             PathColor: "#5fd7ff",
-            RVM_Color: "#87d7d7"
+            RVM_Color: "#87d7d7",
         }
     },
     {
@@ -92,19 +81,19 @@ export const zotePresets = [
             TimeColor: "#ffffff",
             DateColor: "#ffffff",
             PathColor: "#ffffff",
-            RVM_Color: "#5fd7ff"
+            RVM_Color: "#5fd7ff",
         }
     },
     {
         themeName: "Polaris",
         colors: {
             BracketColor: "#363327",
-            MachineColor: "#6A5D59",
-            NameColor: "#82736D",
-            TimeColor: "#448B93",
-            DateColor: "#735C65",
-            PathColor: "#454343",
-            RVM_Color: "#735C65"
+            NameColor: "#82736d",
+            MachineColor: "#6a5d59",
+            TimeColor: "#584e3a",
+            DateColor: "#735c65",
+            PathColor: "#525050",
+            RVM_Color: "#735c65",
         }
     },
     {
@@ -116,7 +105,7 @@ export const zotePresets = [
             TimeColor: "#c777ff",
             DateColor: "#7f47ff",
             PathColor: "#37acff",
-            RVM_Color: "#c777ff"
+            RVM_Color: "#c777ff",
         }
     },
     {
@@ -128,19 +117,7 @@ export const zotePresets = [
             TimeColor: "#ffffff",
             DateColor: "#585858",
             PathColor: "#585858",
-            RVM_Color: "#ff5f00"
-        }
-    },
-    {
-        themeName: "ScoobyDoo",
-        colors: {
-            BracketColor: "#005f5f",
-            NameColor: "#ffffff",
-            MachineColor: "#5fd7ff",
-            TimeColor: "#ffffff",
-            DateColor: "#5fd7ff",
-            PathColor: "#5fd7ff",
-            RVM_Color: "#87d7d7"
+            RVM_Color: "#ff5f00",
         }
     },
     {
@@ -152,7 +129,7 @@ export const zotePresets = [
             TimeColor: "#ffffff",
             DateColor: "#ffffdf",
             PathColor: "#87d7ff",
-            RVM_Color: "#e4e4e4"
+            RVM_Color: "#e4e4e4",
         }
     },
     {
@@ -164,19 +141,7 @@ export const zotePresets = [
             TimeColor: "#ffffff",
             DateColor: "#ffffff",
             PathColor: "#ffdf87",
-            RVM_Color: "#ffaf00"
+            RVM_Color: "#ffaf00",
         }
     },
-    {
-        themeName: "Zardoz",
-        colors: {
-            BracketColor: "#3a3a3a",
-            NameColor: "#ff5f00",
-            MachineColor: "#b2b2b2",
-            TimeColor: "#ffffff",
-            DateColor: "#585858",
-            PathColor: "#585858",
-            RVM_Color: "#ff5f00"
-        }
-    }
-].sort((a, b) => a.themeName > b.themeName)
+];
