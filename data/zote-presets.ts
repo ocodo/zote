@@ -15,13 +15,13 @@ export const zotePresets: ZotePreset[] = [
     {
         themeName: "Helios",
         colors: {
-            BracketColor: "#005f7f",
-            NameColor: "#66d7ef",
-            MachineColor: "#55a7bf",
-            TimeColor: "#66d7e7",
-            DateColor: "#66a7bf",
-            PathColor: "#55a7bf",
-            RVM_Color: "#aad7d7",
+            BracketColor: "#ffdf87",
+            NameColor: "#ffffff",
+            MachineColor: "#ffaf00",
+            TimeColor: "#ffffff",
+            DateColor: "#ffffff",
+            PathColor: "#ffdf87",
+            RVM_Color: "#ffaf00",
         }
     },
     {
@@ -130,18 +130,6 @@ export const zotePresets: ZotePreset[] = [
             DateColor: "#ffffdf",
             PathColor: "#87d7ff",
             RVM_Color: "#e4e4e4",
-        }
-    },
-    {
-        themeName: "Uranium",
-        colors: {
-            BracketColor: "#ffdf87",
-            NameColor: "#ffffff",
-            MachineColor: "#ffaf00",
-            TimeColor: "#ffffff",
-            DateColor: "#ffffff",
-            PathColor: "#ffdf87",
-            RVM_Color: "#ffaf00",
         }
     },
 ];
