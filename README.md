@@ -2,17 +2,17 @@
 
 **Z**sh **o**codo prompt **t**heme **e**ditor
 
-<img src="zote_00.png" width="600" />
+<img src="images/zote_00.png" width="600" />
 
-<img src="zote_01.png" width="600" />
+<img src="images/zote_01.png" width="600" />
 
-<img src="zote_02.png" width="600" />
+<img src="images/zote_02.png" width="600" />
 
-<img src="zote_03.png" width="600" />
+<img src="images/zote_03.png" width="600" />
 
-<img src="zote_04.png" width="600" />
+<img src="images/zote_04.png" width="600" />
 
-<img src="zote_05.png" width="600" />
+<img src="images/zote_05.png" width="600" />
 - - -
 
 # Install
