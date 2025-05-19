@@ -1,135 +1,400 @@
+
 export interface ZotePreset {
-    themeName: string;
+    themeName: string
     colors: {
-        BracketColor: string;
-        NameColor: string;
-        MachineColor: string;
-        TimeColor: string;
-        DateColor: string;
-        PathColor: string;
-        RVM_Color: string;
-    };
+        AT_COLOR: string | undefined
+        BRACKET_COLOR: string | undefined
+        NAME_COLOR: string | undefined
+        MACHINE_COLOR: string | undefined
+        TIME_COLOR: string | undefined
+        DATE_COLOR: string | undefined
+        PATH_COLOR: string | undefined
+        RVM_COLOR: string | undefined
+        AHEAD_COLOR: string | undefined
+        BEHIND_COLOR: string | undefined
+        MERGING_COLOR: string | undefined
+        UNTRACKED_COLOR: string | undefined
+        MODIFIED_COLOR: string | undefined
+        STAGED_COLOR: string | undefined
+        REMOTE_COLOR: string | undefined
+        GIT_ICON_COLOR: string | undefined
+        GIT_LOCATION_COLOR: string | undefined
+    }
+    icons: {
+        AHEAD_ICON: string | undefined
+        BEHIND_ICON: string | undefined
+        MERGING_ICON: string | undefined
+        UNTRACKED_ICON: string | undefined
+        MODIFIED_ICON: string | undefined
+        STAGED_ICON: string | undefined
+        REMOTE_ICON: string | undefined
+        GIT_ICON: string | undefined
+    }
+    settings: {
+        DIVIDER: string | undefined
+        ZSH_PROMPT_WEEK_DAY: string | undefined
+    }
 }
 
 export const zotePresets: ZotePreset[] = [
     {
         themeName: "Helios",
         colors: {
-            BracketColor: "#ffdf87",
-            NameColor: "#ffffff",
-            MachineColor: "#ffaf00",
-            TimeColor: "#ffffff",
-            DateColor: "#ffffff",
-            PathColor: "#ffdf87",
-            RVM_Color: "#ffaf00",
+            AT_COLOR: "#AA9966",
+            BRACKET_COLOR: "#c7a23c",
+            NAME_COLOR: "#fff2d6",
+            MACHINE_COLOR: "#ffaf00",
+            TIME_COLOR: "#fff2d6",
+            DATE_COLOR: "#ff9900",
+            PATH_COLOR: "#ffdf87",
+            RVM_COLOR: "#ffaf00",
+            AHEAD_COLOR: "#AA3333",
+            BEHIND_COLOR: "#00FFFF",
+            MERGING_COLOR: "#CC33CC",
+            UNTRACKED_COLOR: "#AA3333",
+            MODIFIED_COLOR: "#FFFFAA",
+            STAGED_COLOR: "#559955",
+            REMOTE_COLOR: "#FFBB55",
+            GIT_ICON_COLOR: "#FFAF00",
+            GIT_LOCATION_COLOR: "#aa760e",
+        },
+        icons: {
+            AHEAD_ICON: "",
+            BEHIND_ICON: "",
+            MERGING_ICON: "",
+            UNTRACKED_ICON: "",
+            MODIFIED_ICON: "",
+            STAGED_ICON: "",
+            REMOTE_ICON: "",
+            GIT_ICON: "",
+        },
+        settings: {
+            DIVIDER: "",
+            ZSH_PROMPT_WEEK_DAY: "",
         }
     },
     {
         themeName: "Jupiter",
         colors: {
-            BracketColor: "#005f5f",
-            NameColor: "#ffffff",
-            MachineColor: "#5fd7ff",
-            TimeColor: "#ffffff",
-            DateColor: "#5fd7ff",
-            PathColor: "#5fd7ff",
-            RVM_Color: "#87d7d7",
+            AT_COLOR: "",
+            BRACKET_COLOR: "#005f5f",
+            NAME_COLOR: "#ffffff",
+            MACHINE_COLOR: "#5fd7ff",
+            TIME_COLOR: "#ffffff",
+            DATE_COLOR: "#5fd7ff",
+            PATH_COLOR: "#5fd7ff",
+            RVM_COLOR: "#87d7d7",
+            AHEAD_COLOR: "",
+            BEHIND_COLOR: "",
+            MERGING_COLOR: "",
+            UNTRACKED_COLOR: "",
+            MODIFIED_COLOR: "",
+            STAGED_COLOR: "",
+            REMOTE_COLOR: "",
+            GIT_ICON_COLOR: "",
+            GIT_LOCATION_COLOR: "",
+        },
+        icons: {
+            AHEAD_ICON: "",
+            BEHIND_ICON: "",
+            MERGING_ICON: "",
+            UNTRACKED_ICON: "",
+            MODIFIED_ICON: "",
+            STAGED_ICON: "",
+            REMOTE_ICON: "",
+            GIT_ICON: "",
+        },
+        settings: {
+            DIVIDER: "",
+            ZSH_PROMPT_WEEK_DAY: "",
         }
     },
     {
         themeName: "Molybdenum",
         colors: {
-            BracketColor: "#626262",
-            NameColor: "#87d7d7",
-            MachineColor: "#ffffff",
-            TimeColor: "#dadada",
-            DateColor: "#8a8a8a",
-            PathColor: "#eeeeee",
-            RVM_Color: "#ff5f00",
+            AT_COLOR: "",
+            BRACKET_COLOR: "#626262",
+            NAME_COLOR: "#87d7d7",
+            MACHINE_COLOR: "#ffffff",
+            TIME_COLOR: "#dadada",
+            DATE_COLOR: "#8a8a8a",
+            PATH_COLOR: "#eeeeee",
+            RVM_COLOR: "#ff5f00",
+            AHEAD_COLOR: "",
+            BEHIND_COLOR: "",
+            MERGING_COLOR: "",
+            UNTRACKED_COLOR: "",
+            MODIFIED_COLOR: "",
+            STAGED_COLOR: "",
+            REMOTE_COLOR: "",
+            GIT_ICON_COLOR: "",
+            GIT_LOCATION_COLOR: "",
+        },
+        icons: {
+            AHEAD_ICON: "",
+            BEHIND_ICON: "",
+            MERGING_ICON: "",
+            UNTRACKED_ICON: "",
+            MODIFIED_ICON: "",
+            STAGED_ICON: "",
+            REMOTE_ICON: "",
+            GIT_ICON: "",
+        },
+        settings: {
+            DIVIDER: "",
+            ZSH_PROMPT_WEEK_DAY: "",
         }
     },
     {
         themeName: "Neptune",
         colors: {
-            BracketColor: "#865e3c",
-            NameColor: "#ffffff",
-            MachineColor: "#deddda",
-            TimeColor: "#ffaa00",
-            DateColor: "#ff9900",
-            PathColor: "#888888",
-            RVM_Color: "#aaaaaa",
+            AT_COLOR: "",
+            BRACKET_COLOR: "#865e3c",
+            NAME_COLOR: "#ffffff",
+            MACHINE_COLOR: "#deddda",
+            TIME_COLOR: "#ffaa00",
+            DATE_COLOR: "#ff9900",
+            PATH_COLOR: "#888888",
+            RVM_COLOR: "#aaaaaa",
+            AHEAD_COLOR: "",
+            BEHIND_COLOR: "",
+            MERGING_COLOR: "",
+            UNTRACKED_COLOR: "",
+            MODIFIED_COLOR: "",
+            STAGED_COLOR: "",
+            REMOTE_COLOR: "",
+            GIT_ICON_COLOR: "",
+            GIT_LOCATION_COLOR: "",
+        },
+        icons: {
+            AHEAD_ICON: "",
+            BEHIND_ICON: "",
+            MERGING_ICON: "",
+            UNTRACKED_ICON: "",
+            MODIFIED_ICON: "",
+            STAGED_ICON: "",
+            REMOTE_ICON: "",
+            GIT_ICON: "",
+        },
+        settings: {
+            DIVIDER: "",
+            ZSH_PROMPT_WEEK_DAY: "",
         }
     },
     {
         themeName: "Ocodo",
         colors: {
-            BracketColor: "#0087af",
-            NameColor: "#ffffff",
-            MachineColor: "#5fd7ff",
-            TimeColor: "#ffffff",
-            DateColor: "#5fd7ff",
-            PathColor: "#5fd7ff",
-            RVM_Color: "#87d7d7",
+            AT_COLOR: "",
+            BRACKET_COLOR: "#0087af",
+            NAME_COLOR: "#ffffff",
+            MACHINE_COLOR: "#5fd7ff",
+            TIME_COLOR: "#ffffff",
+            DATE_COLOR: "#5fd7ff",
+            PATH_COLOR: "#5fd7ff",
+            RVM_COLOR: "#87d7d7",
+            AHEAD_COLOR: "",
+            BEHIND_COLOR: "",
+            MERGING_COLOR: "",
+            UNTRACKED_COLOR: "",
+            MODIFIED_COLOR: "",
+            STAGED_COLOR: "",
+            REMOTE_COLOR: "",
+            GIT_ICON_COLOR: "",
+            GIT_LOCATION_COLOR: "",
+        },
+        icons: {
+            AHEAD_ICON: "",
+            BEHIND_ICON: "",
+            MERGING_ICON: "",
+            UNTRACKED_ICON: "",
+            MODIFIED_ICON: "",
+            STAGED_ICON: "",
+            REMOTE_ICON: "",
+            GIT_ICON: "",
+        },
+        settings: {
+            DIVIDER: "",
+            ZSH_PROMPT_WEEK_DAY: "",
         }
     },
     {
         themeName: "Plutonium",
         colors: {
-            BracketColor: "#00afaf",
-            NameColor: "#ffffff",
-            MachineColor: "#5fd7ff",
-            TimeColor: "#ffffff",
-            DateColor: "#ffffff",
-            PathColor: "#ffffff",
-            RVM_Color: "#5fd7ff",
+            AT_COLOR: "",
+            BRACKET_COLOR: "#00afaf",
+            NAME_COLOR: "#ffffff",
+            MACHINE_COLOR: "#5fd7ff",
+            TIME_COLOR: "#ffffff",
+            DATE_COLOR: "#ffffff",
+            PATH_COLOR: "#ffffff",
+            RVM_COLOR: "#5fd7ff",
+            AHEAD_COLOR: "",
+            BEHIND_COLOR: "",
+            MERGING_COLOR: "",
+            UNTRACKED_COLOR: "",
+            MODIFIED_COLOR: "",
+            STAGED_COLOR: "",
+            REMOTE_COLOR: "",
+            GIT_ICON_COLOR: "",
+            GIT_LOCATION_COLOR: "",
+        },
+        icons: {
+            AHEAD_ICON: "",
+            BEHIND_ICON: "",
+            MERGING_ICON: "",
+            UNTRACKED_ICON: "",
+            MODIFIED_ICON: "",
+            STAGED_ICON: "",
+            REMOTE_ICON: "",
+            GIT_ICON: "",
+        },
+        settings: {
+            DIVIDER: "",
+            ZSH_PROMPT_WEEK_DAY: "",
         }
     },
     {
         themeName: "Polaris",
         colors: {
-            BracketColor: "#363327",
-            NameColor: "#82736d",
-            MachineColor: "#6a5d59",
-            TimeColor: "#584e3a",
-            DateColor: "#735c65",
-            PathColor: "#525050",
-            RVM_Color: "#735c65",
+            AT_COLOR: "#735C65",
+            BRACKET_COLOR: "#363327",
+            NAME_COLOR: "#82736D",
+            MACHINE_COLOR: "#6A5D59",
+            TIME_COLOR: "#584e3a",
+            DATE_COLOR: "#735C65",
+            PATH_COLOR: "#525050",
+            RVM_COLOR: "#735C65",
+            AHEAD_COLOR: "",
+            BEHIND_COLOR: "",
+            MERGING_COLOR: "",
+            UNTRACKED_COLOR: "",
+            MODIFIED_COLOR: "",
+            STAGED_COLOR: "",
+            REMOTE_COLOR: "",
+            GIT_ICON_COLOR: "",
+            GIT_LOCATION_COLOR: "",
+        },
+        icons: {
+            AHEAD_ICON: "",
+            BEHIND_ICON: "",
+            MERGING_ICON: "",
+            UNTRACKED_ICON: "",
+            MODIFIED_ICON: "",
+            STAGED_ICON: "",
+            REMOTE_ICON: "",
+            GIT_ICON: "",
+        },
+        settings: {
+            DIVIDER: "",
+            ZSH_PROMPT_WEEK_DAY: "",
         }
     },
     {
         themeName: "Pulsar",
         colors: {
-            BracketColor: "#6837ef",
-            NameColor: "#37acff",
-            MachineColor: "#37acff",
-            TimeColor: "#c777ff",
-            DateColor: "#7f47ff",
-            PathColor: "#37acff",
-            RVM_Color: "#c777ff",
+            AT_COLOR: "",
+            BRACKET_COLOR: "#6837ef",
+            NAME_COLOR: "#37acff",
+            MACHINE_COLOR: "#37acff",
+            TIME_COLOR: "#c777ff",
+            DATE_COLOR: "#7f47ff",
+            PATH_COLOR: "#37acff",
+            RVM_COLOR: "#c777ff",
+            AHEAD_COLOR: "",
+            BEHIND_COLOR: "",
+            MERGING_COLOR: "",
+            UNTRACKED_COLOR: "",
+            MODIFIED_COLOR: "",
+            STAGED_COLOR: "",
+            REMOTE_COLOR: "",
+            GIT_ICON_COLOR: "",
+            GIT_LOCATION_COLOR: "",
+        },
+        icons: {
+            AHEAD_ICON: "",
+            BEHIND_ICON: "",
+            MERGING_ICON: "",
+            UNTRACKED_ICON: "",
+            MODIFIED_ICON: "",
+            STAGED_ICON: "",
+            REMOTE_ICON: "",
+            GIT_ICON: "",
+        },
+        settings: {
+            DIVIDER: "",
+            ZSH_PROMPT_WEEK_DAY: "",
         }
     },
     {
         themeName: "Saturn",
         colors: {
-            BracketColor: "#3a3a3a",
-            NameColor: "#ff5f00",
-            MachineColor: "#b2b2b2",
-            TimeColor: "#ffffff",
-            DateColor: "#585858",
-            PathColor: "#585858",
-            RVM_Color: "#ff5f00",
+            AT_COLOR: "",
+            BRACKET_COLOR: "#3a3a3a",
+            NAME_COLOR: "#ff5f00",
+            MACHINE_COLOR: "#b2b2b2",
+            TIME_COLOR: "#ffffff",
+            DATE_COLOR: "#585858",
+            PATH_COLOR: "#585858",
+            RVM_COLOR: "#ff5f00",
+            AHEAD_COLOR: "",
+            BEHIND_COLOR: "",
+            MERGING_COLOR: "",
+            UNTRACKED_COLOR: "",
+            MODIFIED_COLOR: "",
+            STAGED_COLOR: "",
+            REMOTE_COLOR: "",
+            GIT_ICON_COLOR: "",
+            GIT_LOCATION_COLOR: "",
+        },
+        icons: {
+            AHEAD_ICON: "",
+            BEHIND_ICON: "",
+            MERGING_ICON: "",
+            UNTRACKED_ICON: "",
+            MODIFIED_ICON: "",
+            STAGED_ICON: "",
+            REMOTE_ICON: "",
+            GIT_ICON: "",
+        },
+        settings: {
+            DIVIDER: "",
+            ZSH_PROMPT_WEEK_DAY: "",
         }
     },
     {
         themeName: "Squee",
         colors: {
-            BracketColor: "#87d7ff",
-            NameColor: "#ffffff",
-            MachineColor: "#00d7ff",
-            TimeColor: "#ffffff",
-            DateColor: "#ffffdf",
-            PathColor: "#87d7ff",
-            RVM_Color: "#e4e4e4",
+            AT_COLOR: "",
+            BRACKET_COLOR: "#87d7ff",
+            NAME_COLOR: "#ffffff",
+            MACHINE_COLOR: "#00d7ff",
+            TIME_COLOR: "#ffffff",
+            DATE_COLOR: "#ffffdf",
+            PATH_COLOR: "#87d7ff",
+            RVM_COLOR: "#e4e4e4",
+            AHEAD_COLOR: "",
+            BEHIND_COLOR: "",
+            MERGING_COLOR: "",
+            UNTRACKED_COLOR: "",
+            MODIFIED_COLOR: "",
+            STAGED_COLOR: "",
+            REMOTE_COLOR: "",
+            GIT_ICON_COLOR: "",
+            GIT_LOCATION_COLOR: "",
+        },
+        icons: {
+            AHEAD_ICON: "",
+            BEHIND_ICON: "",
+            MERGING_ICON: "",
+            UNTRACKED_ICON: "",
+            MODIFIED_ICON: "",
+            STAGED_ICON: "",
+            REMOTE_ICON: "",
+            GIT_ICON: "",
+        },
+        settings: {
+            DIVIDER: "",
+            ZSH_PROMPT_WEEK_DAY: "",
         }
     },
 ];

@@ -5,7 +5,7 @@ import { zotePresets } from '@/data/zote-presets'
 type ZotePresetSelectorProps = {
   selected: string
   onSelect: (presetName: string) => void
-  customColors: Record<string, string>
+  customColors: Record<string, string | undefined>
 }
 
 export const ZotePresetSelector: React.FC<ZotePresetSelectorProps> = ({
@@ -22,15 +22,21 @@ export const ZotePresetSelector: React.FC<ZotePresetSelectorProps> = ({
   }
 
   // Render color dots for a preset or custom colors
-  const renderColorDots = (colors: Record<string, string>) => (
+  const renderColorDots = (colors: Record<string, string | undefined>) => (
     <div className="flex gap-1 ml-4">
-      {['BracketColor', 'MachineColor', 'NameColor', 'TimeColor', 'PathColor'].map((key) => (
+      {[
+        'BRACKET_COLOR',
+        'MACHINE_COLOR',
+        'NAME_COLOR',
+        'TIME_COLOR',
+        'PATH_COLOR'
+      ].map((key) => ( key ? (
         <div
           key={key}
           className="w-4 h-4 rounded-full border border-zinc-600"
           style={{ backgroundColor: colors[key] }}
         />
-      ))}
+      ):('')))}
     </div>
   )
 

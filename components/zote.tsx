@@ -5,34 +5,85 @@ import { ZotePresetSelector } from '@/components/zote-preset-selector'
 import { ZoteExportThemeDialog } from '@/components/zote-export-theme'
 
 type ColorKeys =
-    | 'BracketColor'
-    | 'NameColor'
-    | 'MachineColor'
-    | 'TimeColor'
-    | 'DateColor'
-    | 'PathColor'
-    | 'RVM_Color'
+    | 'AT_COLOR'
+    | 'BRACKET_COLOR'
+    | 'NAME_COLOR'
+    | 'MACHINE_COLOR'
+    | 'TIME_COLOR'
+    | 'DATE_COLOR'
+    | 'PATH_COLOR'
+    | 'RVM_COLOR'
+    | 'AHEAD_COLOR'
+    | 'BEHIND_COLOR'
+    | 'MERGING_COLOR'
+    | 'UNTRACKED_COLOR'
+    | 'MODIFIED_COLOR'
+    | 'STAGED_COLOR'
+    | 'REMOTE_COLOR'
+    | 'GIT_ICON_COLOR'
+    | 'GIT_LOCATION_COLOR'
 
-type ColorState = Record<ColorKeys, string>
+type ColorState = Record<ColorKeys, string | undefined>
 
 const defaultColors: ColorState = {
-    BracketColor: '#865e3c',
-    NameColor: '#ff5555',
-    MachineColor: '#55ffff',
-    TimeColor: '#ffaa00',
-    DateColor: '#00ffaa', // not displayed
-    PathColor: '#aaaaaa',
-    RVM_Color: '#ff00ff', // not displayed
+    AT_COLOR: "#AA9966",
+    BRACKET_COLOR: "#c7a23c",
+    NAME_COLOR: "#fff2d6",
+    MACHINE_COLOR: "#ffaf00",
+    TIME_COLOR: "#fff2d6",
+    DATE_COLOR: "#ff9900",
+    PATH_COLOR: "#ffdf87",
+    RVM_COLOR: "#ffaf00",
+    AHEAD_COLOR: "#AA3333",
+    BEHIND_COLOR: "#00FFFF",
+    MERGING_COLOR: "#CC33CC",
+    UNTRACKED_COLOR: "#AA3333",
+    MODIFIED_COLOR: "#FFFFAA",
+    STAGED_COLOR: "#559955",
+    REMOTE_COLOR: "#FFBB55",
+    GIT_ICON_COLOR: "#FFAF00",
+    GIT_LOCATION_COLOR: "#aa760e",
 }
 
+/*
+  Defaults from zsh script
+: ${AT_COLOR="#FFFFFF"}
+: ${BRACKET_COLOR="#c7a23c"}
+: ${NAME_COLOR="#fff2d6"}
+: ${MACHINE_COLOR="#ffaf00"}
+: ${TIME_COLOR="#ffffff"}
+: ${DATE_COLOR="#ffffff"}
+: ${PATH_COLOR="#ffdf87"}
+: ${RVM_COLOR="#ffaf00"}
+: ${AHEAD_COLOR="#AA3333"}
+: ${AHEAD_ICON="🢁"}
+: ${BEHIND_COLOR="#00FFFF"}
+: ${BEHIND_ICON="🢃"}
+: ${MERGING_COLOR="#CC33CC"}
+: ${MERGING_ICON=" "}
+: ${UNTRACKED_COLOR="#AA3333"}
+: ${UNTRACKED_ICON="●"}
+: ${MODIFIED_COLOR="#FFFFAA"}
+: ${MODIFIED_ICON="●"}
+: ${STAGED_COLOR="#559955"}
+: ${STAGED_ICON="●"}
+: ${REMOTE_COLOR="#83cbff"}
+: ${REMOTE_ICON="🌐"}
+: ${GIT_ICON=" "}
+: ${GIT_ICON_COLOR="#FFFFFF"}
+: ${GIT_LOCATION_COLOR="#FFFFFF"}
+: ${DIVIDER="|"}
+: ${ZSH_PROMPT_WEEK_DAY="%(0w,Sun,)%(1w,Mon,)%(2w,Tue,)%(3w,Wed,)%(4w,Thu,)%(5w,Fri,)%(6w,Sat,)"}
+*/
+
 const visibleColorKeys: (keyof ColorState)[] = [
-    'BracketColor',
-    'NameColor',
-    'MachineColor',
-    'TimeColor',
-    'PathColor',
-    'DateColor',
-    'RVM_Color'
+    'BRACKET_COLOR',
+    'NAME_COLOR',
+    'MACHINE_COLOR',
+    'TIME_COLOR',
+    'PATH_COLOR',
+    'DATE_COLOR',
+    'RVM_COLOR'
 ]
 
 export const Zote: React.FC = () => {
@@ -96,7 +147,7 @@ export const Zote: React.FC = () => {
 
 type ZoteColorPickerRowProps = {
     label: string
-    value: string
+    value: string | undefined
     onChange: (newColor: string) => void
 }
 
@@ -151,24 +202,30 @@ type ZotePromptPreviewProps = {
 }
 
 const ZotePromptPreview: React.FC<ZotePromptPreviewProps> = ({ colors, host }) => {
-    const { BracketColor, NameColor, MachineColor, TimeColor, PathColor } = colors
+    const {
+        BRACKET_COLOR,
+        NAME_COLOR,
+        MACHINE_COLOR,
+        TIME_COLOR,
+        PATH_COLOR
+    } = colors
 
     return (
         <div className="font-mono text-lg leading-relaxed">
             <div>
-                <span style={{ color: BracketColor }}>[</span>
-                <span style={{ color: BracketColor }}>% </span>
-                <span style={{ color: NameColor }}>ocodo</span>
-                <span style={{ color: BracketColor }}>@</span>
-                <span style={{ color: MachineColor }}>{host}</span>
-                <span style={{ color: BracketColor }}>|</span>
-                <span style={{ color: TimeColor }}>09:11AM</span>
-                <span style={{ color: BracketColor }}>]</span>
+                <span style={{ color: BRACKET_COLOR }}>[</span>
+                <span style={{ color: BRACKET_COLOR }}>% </span>
+                <span style={{ color: NAME_COLOR }}>ocodo</span>
+                <span style={{ color: BRACKET_COLOR }}>@</span>
+                <span style={{ color: MACHINE_COLOR }}>{host}</span>
+                <span style={{ color: BRACKET_COLOR }}>|</span>
+                <span style={{ color: TIME_COLOR }}>09:11AM</span>
+                <span style={{ color: BRACKET_COLOR }}>]</span>
             </div>
             <div>
-                <span style={{ color: BracketColor }}>[</span>
-                <span style={{ color: PathColor }}>~/workspace/zote</span>
-                <span style={{ color: BracketColor }}>]</span>
+                <span style={{ color: BRACKET_COLOR }}>[</span>
+                <span style={{ color: PATH_COLOR }}>~/workspace/zote</span>
+                <span style={{ color: BRACKET_COLOR }}>]</span>
             </div>
         </div>
     )

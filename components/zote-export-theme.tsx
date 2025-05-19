@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Copy } from 'lucide-react'
 
 type ZoteExportThemeDialogProps = {
-    colors: Record<string, string>
+    colors: Record<string, string | undefined>
     defaultName?: string
 }
 
