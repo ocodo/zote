@@ -1,40 +1,33 @@
+import { useLocalStorage } from "@/hooks/use-local-storage";
 import React, { createContext, useContext, useState, useEffect } from "react";
 
-// Define the Theme context with theme and setTheme
-const ThemeContext = createContext<{
-  theme: string;
-  setTheme: (theme: string) => void;
-}>({
-  theme: "light", // Default theme is light
-  setTheme: () => {}, // No-op function by default
-});
+export const ThemeContext = createContext({
+  theme: 'light',
+  toggleTheme: () => { }
+})
 
-export const useThemeContext = () => useContext(ThemeContext);
-
-// ThemeProvider component
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [theme, setTheme] = useState<string>("light");
+  const [theme, setTheme] = useLocalStorage("theme", "light");
 
   useEffect(() => {
-    // Try to load theme from localStorage, default to "light"
-    const savedTheme = localStorage.getItem("theme") || "light";
-    setTheme(savedTheme);
+    theme == 'dark' ?
+      document.body.classList.add('dark') :
+      document.body.classList.remove('dark')
+  }, [theme])
 
-    // Apply the theme to the body class
-    document.body.classList.add(savedTheme);
-  }, []);
-
-  const toggleTheme = (newTheme: string) => {
-    setTheme(newTheme);
-    localStorage.setItem("theme", newTheme);
-
-    // Apply the new theme to the body class
-    document.body.classList.remove(theme);
-    document.body.classList.add(newTheme);
-  };
+  const toggleTheme = () => {
+    if (theme == 'light') {
+      setTheme('dark')
+    } else if (theme == 'dark') {
+      setTheme('light')
+    }
+  }
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme: toggleTheme }}>
+    <ThemeContext.Provider value={{
+      theme,
+      toggleTheme
+    }}>
       {children}
     </ThemeContext.Provider>
   );
