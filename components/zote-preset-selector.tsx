@@ -9,7 +9,6 @@ type ZotePresetSelectorProps = {
   customColors: ColorRecord
 }
 
-
 export const ZotePresetSelector: React.FC<ZotePresetSelectorProps> = ({
   selected,
   onSelect,

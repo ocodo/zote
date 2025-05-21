@@ -209,6 +209,7 @@ type ZotePromptPreviewProps = {
 
 const ZotePromptPreview: React.FC<ZotePromptPreviewProps> = ({ colors, host }) => {
     const {
+        AT_COLOR,
         BRACKET_COLOR,
         NAME_COLOR,
         MACHINE_COLOR,
@@ -222,7 +223,7 @@ const ZotePromptPreview: React.FC<ZotePromptPreviewProps> = ({ colors, host }) =
                 <span style={{ color: BRACKET_COLOR }}>[</span>
                 <span style={{ color: BRACKET_COLOR }}>% </span>
                 <span style={{ color: NAME_COLOR }}>ocodo</span>
-                <span style={{ color: BRACKET_COLOR }}>@</span>
+                <span style={{ color: AT_COLOR }}>@</span>
                 <span style={{ color: MACHINE_COLOR }}>{host}</span>
                 <span style={{ color: BRACKET_COLOR }}>|</span>
                 <span style={{ color: TIME_COLOR }}>09:11AM</span>

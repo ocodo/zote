@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button'
 import { Menu, Moon, Sun } from 'lucide-react'
 import { toast } from 'sonner'
-import { ZoteIcon } from './zote-icon'
+import { ZoteIcon } from '@/components/zote-icon'
 
 interface HeadingProps {
   setTheme: (theme: string) => void
