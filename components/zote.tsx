@@ -79,16 +79,16 @@ const visibleColorKeys: (keyof ColorState)[] = [
     'MACHINE_COLOR',
     'TIME_COLOR',
     'PATH_COLOR',
+    'REMOTE_COLOR',
     'DATE_COLOR',
     'RVM_COLOR',
+    'GIT_ICON_COLOR',
     'AHEAD_COLOR',
     'BEHIND_COLOR',
     'MERGING_COLOR',
     'UNTRACKED_COLOR',
     'MODIFIED_COLOR',
     'STAGED_COLOR',
-    'REMOTE_COLOR',
-    'GIT_ICON_COLOR',
     'GIT_LOCATION_COLOR',
 ]
 
@@ -171,7 +171,6 @@ const ZoteColorPickerRow: React.FC<ZoteColorPickerRowProps> = ({ label, value, o
         'UNTRACKED_COLOR',
         'MODIFIED_COLOR',
         'STAGED_COLOR',
-        'REMOTE_COLOR',
     ]
     const presentationName = (name: string) => {
         name = gitIconColorKeys.includes(name) ? `GIT_${name}` : name
@@ -231,18 +230,18 @@ const ZotePromptPreview: React.FC<ZotePromptPreviewProps> = ({ colors, icons, ho
         BRACKET_COLOR,
         NAME_COLOR,
         MACHINE_COLOR,
+        REMOTE_COLOR,
         TIME_COLOR,
         PATH_COLOR,
         DATE_COLOR,
         RVM_COLOR,
+        GIT_ICON_COLOR,
         AHEAD_COLOR,
         BEHIND_COLOR,
         MERGING_COLOR,
         UNTRACKED_COLOR,
         MODIFIED_COLOR,
         STAGED_COLOR,
-        REMOTE_COLOR,
-        GIT_ICON_COLOR,
         GIT_LOCATION_COLOR,
     } = colors
 
@@ -265,6 +264,7 @@ const ZotePromptPreview: React.FC<ZotePromptPreviewProps> = ({ colors, icons, ho
                 <span style={{ color: NAME_COLOR }}>ocodo</span>
                 <span style={{ color: AT_COLOR }}>@</span>
                 <span style={{ color: MACHINE_COLOR }}>{host}</span>
+                <span style={{ color: REMOTE_COLOR }}>{REMOTE_ICON}</span>
                 <span style={{ color: BRACKET_COLOR }}>|</span>
                 <span style={{ color: DATE_COLOR }}>Mon</span>
                 <span style={{ color: BRACKET_COLOR }}>|</span>
@@ -279,6 +279,10 @@ const ZotePromptPreview: React.FC<ZotePromptPreviewProps> = ({ colors, icons, ho
                 <span style={{color: UNTRACKED_COLOR}}>{UNTRACKED_ICON}</span>
                 <span style={{color: MODIFIED_COLOR}}>{MODIFIED_ICON}</span>
                 <span style={{color: STAGED_COLOR}}>{STAGED_ICON}</span>
+                <span style={{color: AHEAD_COLOR}}>{AHEAD_ICON}</span>
+                <span style={{color: AHEAD_COLOR}}>2</span>
+                <span style={{color: BEHIND_COLOR}}>{BEHIND_ICON}</span>
+                <span style={{color: BEHIND_COLOR}}>2</span>
                 <span style={{
                     marginLeft: '0.25em',
                     color: GIT_LOCATION_COLOR
