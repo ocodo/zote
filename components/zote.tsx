@@ -23,15 +23,26 @@ type ColorKeys =
     | 'GIT_ICON_COLOR'
     | 'GIT_LOCATION_COLOR'
 
+type IconKeys =
+    | 'AHEAD_ICON'
+    | 'BEHIND_ICON'
+    | 'MERGING_ICON'
+    | 'UNTRACKED_ICON'
+    | 'MODIFIED_ICON'
+    | 'STAGED_ICON'
+    | 'REMOTE_ICON'
+    | 'GIT_ICON'
+
 type ColorState = Record<ColorKeys, string | undefined>
+type IconState = Record<IconKeys, string | undefined>
 
 const defaultColors: ColorState = {
-    AT_COLOR: "#AA9966",
+    AT_COLOR: "#FFFFFF",
     BRACKET_COLOR: "#c7a23c",
     NAME_COLOR: "#fff2d6",
     MACHINE_COLOR: "#ffaf00",
-    TIME_COLOR: "#fff2d6",
-    DATE_COLOR: "#ff9900",
+    TIME_COLOR: "#ffffff",
+    DATE_COLOR: "#ffffff",
     PATH_COLOR: "#ffdf87",
     RVM_COLOR: "#ffaf00",
     AHEAD_COLOR: "#AA3333",
@@ -40,38 +51,23 @@ const defaultColors: ColorState = {
     UNTRACKED_COLOR: "#AA3333",
     MODIFIED_COLOR: "#FFFFAA",
     STAGED_COLOR: "#559955",
-    REMOTE_COLOR: "#FFBB55",
-    GIT_ICON_COLOR: "#FFAF00",
-    GIT_LOCATION_COLOR: "#aa760e",
+    REMOTE_COLOR: "#83cbff",
+    GIT_ICON_COLOR: "#FFFFFF",
+    GIT_LOCATION_COLOR: "#FFFFFF",
+}
+
+const defaultIcons: IconState = {
+    AHEAD_ICON: "🢁",
+    BEHIND_ICON: "🢃",
+    MERGING_ICON: " ",
+    UNTRACKED_ICON: "●",
+    MODIFIED_ICON: "●",
+    STAGED_ICON: "●",
+    REMOTE_ICON: "🌐",
+    GIT_ICON: " ",
 }
 
 /*
-  Defaults from zsh script
-: ${AT_COLOR="#FFFFFF"}
-: ${BRACKET_COLOR="#c7a23c"}
-: ${NAME_COLOR="#fff2d6"}
-: ${MACHINE_COLOR="#ffaf00"}
-: ${TIME_COLOR="#ffffff"}
-: ${DATE_COLOR="#ffffff"}
-: ${PATH_COLOR="#ffdf87"}
-: ${RVM_COLOR="#ffaf00"}
-: ${AHEAD_COLOR="#AA3333"}
-: ${AHEAD_ICON="🢁"}
-: ${BEHIND_COLOR="#00FFFF"}
-: ${BEHIND_ICON="🢃"}
-: ${MERGING_COLOR="#CC33CC"}
-: ${MERGING_ICON=" "}
-: ${UNTRACKED_COLOR="#AA3333"}
-: ${UNTRACKED_ICON="●"}
-: ${MODIFIED_COLOR="#FFFFAA"}
-: ${MODIFIED_ICON="●"}
-: ${STAGED_COLOR="#559955"}
-: ${STAGED_ICON="●"}
-: ${REMOTE_COLOR="#83cbff"}
-: ${REMOTE_ICON="🌐"}
-: ${GIT_ICON=" "}
-: ${GIT_ICON_COLOR="#FFFFFF"}
-: ${GIT_LOCATION_COLOR="#FFFFFF"}
 : ${DIVIDER="|"}
 : ${ZSH_PROMPT_WEEK_DAY="%(0w,Sun,)%(1w,Mon,)%(2w,Tue,)%(3w,Wed,)%(4w,Thu,)%(5w,Fri,)%(6w,Sat,)"}
 */
@@ -83,7 +79,16 @@ const visibleColorKeys: (keyof ColorState)[] = [
     'TIME_COLOR',
     'PATH_COLOR',
     'DATE_COLOR',
-    'RVM_COLOR'
+    'RVM_COLOR',
+    'AHEAD_COLOR',
+    'BEHIND_COLOR',
+    'MERGING_COLOR',
+    'UNTRACKED_COLOR',
+    'MODIFIED_COLOR',
+    'STAGED_COLOR',
+    'REMOTE_COLOR',
+    'GIT_ICON_COLOR',
+    'GIT_LOCATION_COLOR',
 ]
 
 export const Zote: React.FC = () => {
@@ -165,7 +170,7 @@ const ZoteColorPickerRow: React.FC<ZoteColorPickerRowProps> = ({ label, value, o
             <div className="text-sm font-medium mb-2">{label}</div>
             <div className="ml-2 font-mono text-sm mb-2">{value}</div>
 
-            <div className="w-12 h-12" onClick={handleClick} style={{ color: value }}>
+            <div className="w-12 h-8" onClick={handleClick} style={{ color: value }}>
                 <svg
                     viewBox="0 0 48 48"
                     className="w-full h-full cursor-pointer"
@@ -173,12 +178,13 @@ const ZoteColorPickerRow: React.FC<ZoteColorPickerRowProps> = ({ label, value, o
                     aria-label={`Select color ${value}`}
                     role="button"
                 >
-                    <circle
-                        cx="24"
-                        cy="24"
-                        r="22"
-                        stroke="currentColor"
-                        strokeWidth="2"
+                    <rect
+                        x="0"
+                        y="0"
+                        width="48"
+                        height="24"
+                        rx="12"
+                        ry="12"
                         fill="currentColor"
                     />
                 </svg>

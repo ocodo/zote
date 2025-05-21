@@ -2,11 +2,13 @@ import React, { useState } from 'react'
 import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription, DialogClose } from '@/components/ui/dialog' // Local imports for Shadcn Dialog components
 import { zotePresets } from '@/data/zote-presets'
 
+type ColorRecord = Record<string, string | undefined>
 type ZotePresetSelectorProps = {
   selected: string
   onSelect: (presetName: string) => void
-  customColors: Record<string, string | undefined>
+  customColors: ColorRecord
 }
+
 
 export const ZotePresetSelector: React.FC<ZotePresetSelectorProps> = ({
   selected,
@@ -21,24 +23,26 @@ export const ZotePresetSelector: React.FC<ZotePresetSelectorProps> = ({
     setOpen(false)  // Close the dialog after selection
   }
 
-  // Render color dots for a preset or custom colors
-  const renderColorDots = (colors: Record<string, string | undefined>) => (
-    <div className="flex gap-1 ml-4">
-      {[
-        'BRACKET_COLOR',
-        'MACHINE_COLOR',
-        'NAME_COLOR',
-        'TIME_COLOR',
-        'PATH_COLOR'
-      ].map((key) => ( key ? (
-        <div
-          key={key}
-          className="w-4 h-4 rounded-full border border-zinc-600"
-          style={{ backgroundColor: colors[key] }}
-        />
-      ):('')))}
-    </div>
-  )
+  function renderColorBar(colors: ColorRecord): React.ReactElement {
+    const colorKeys = Object.keys(colors);
+    const numColors = colorKeys.length;
+    const stripeWidth = 10;
+
+    return (
+      <div className="color-bar flex ml-4 justify-start">
+        {colorKeys.map((key) => (
+          <span
+            key={key}
+            style={{
+              width: `${stripeWidth}px`,
+              height: '20px',
+              backgroundColor: colors[key],
+            }}
+          />
+        ))}
+      </div>
+    );
+  }
 
   return (
     <div className="mb-6">
@@ -47,7 +51,7 @@ export const ZotePresetSelector: React.FC<ZotePresetSelectorProps> = ({
       <Dialog open={open} onOpenChange={setOpen}>
         {/* Dialog Trigger Button */}
         <DialogTrigger asChild>
-          <button className="w-full p-2 border border-zinc-600 rounded-md bg-zinc-800 text-white flex justify-between items-center">
+          <button className="w-full p-2 border border-zinc-600 rounded-md light:bg-zinc-100 dark:bg-zinc-800  dark:text-white flex justify-between items-center">
             <span>{selected === 'Custom' ? 'Custom' : selected}</span>
             <svg
               className="w-4 h-4 ml-2 opacity-75"
@@ -62,7 +66,7 @@ export const ZotePresetSelector: React.FC<ZotePresetSelectorProps> = ({
         </DialogTrigger>
 
         {/* Dialog Content */}
-        <DialogContent className="bg-background text-foreground rounded-md w-80 max-h-[70vh] overflow-auto p-4 shadow-lg">
+        <DialogContent className="bg-background text-foreground rounded-md max-h-[70vh] overflow-auto p-4 shadow-lg">
           <DialogTitle>Select a Theme Preset</DialogTitle>
           <DialogDescription>
             Choose a preset or select "Custom" to edit your theme.
@@ -73,11 +77,11 @@ export const ZotePresetSelector: React.FC<ZotePresetSelectorProps> = ({
             <button
               onClick={() => handleSelect('Custom')}
               className={`${
-                selected === 'Custom' ? 'bg-zinc-700' : 'hover:bg-zinc-700'
+                selected === 'Custom' ? 'bg-zinc-700' : 'hover:bg-zinc-700 hover:text-zinc-100'
               } py-2 px-3 rounded-md cursor-pointer flex justify-between items-center`}
             >
               <span>Custom</span>
-              {renderColorDots(customColors)}
+              {renderColorBar(customColors)}
             </button>
 
             {zotePresets.map((preset) => (
@@ -85,19 +89,14 @@ export const ZotePresetSelector: React.FC<ZotePresetSelectorProps> = ({
                 key={preset.themeName}
                 onClick={() => handleSelect(preset.themeName)}
                 className={`${
-                  selected === preset.themeName ? 'bg-zinc-700' : 'hover:bg-zinc-700'
+                  selected === preset.themeName ? 'bg-zinc-700' : 'hover:bg-zinc-700 hover:text-zinc-100'
                 } py-2 px-3 rounded-md cursor-pointer flex justify-between items-center`}
               >
                 <span>{preset.themeName}</span>
-                {renderColorDots(preset.colors)}
+                {renderColorBar(preset.colors)}
               </button>
             ))}
           </div>
-
-          {/* Dialog Close Button */}
-          <DialogClose asChild>
-            <button className="mt-4 text-sm text-blue-500 hover:text-blue-700">Close</button>
-          </DialogClose>
         </DialogContent>
       </Dialog>
     </div>

@@ -64,6 +64,8 @@
   --border: 240 4% 80%;
   --input: 240 4% 80%;
   --ring: 142 76% 36%;
+  --hover-background: 240 5.9% 70%;
+  --selected-background: 240 5.9% 70%;
 }
 
 @layer base {
@@ -113,6 +115,8 @@
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+    --hover-background: 240 5.9% 20%;
+    --selected-background: 240 5.9% 20%;
   }
 
   * {
