@@ -1,8 +1,14 @@
 # Zote.plan
 
 - **Extend Color Management**
-    - [ ] Extend Color Management (update visible colors list).
-    - [ ] Extend Prompt Preview to reflect Color Changes.
+    - [x] Extend Color Management (update visible colors list).
+    - [x] Extend Prompt Preview to reflect Color Changes.
+
+- **Save presets**
+    - [ ] User can add presets
+    - [ ] Presets stored in localstorage
+    - [ ] Preset as qr code
+    - [ ] Preset as save to file...
 
 - **Icon Integration**
     - [ ] Define Icon Data Structure (name, value).
