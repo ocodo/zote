@@ -1,4 +1,3 @@
-
 export interface ZotePreset {
     themeName: string
     colors: {

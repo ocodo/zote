@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
-import { Card } from '@/components/ui/card'
 import { zotePresets } from '@/data/zote-presets'
 import { ZotePresetSelector } from '@/components/zote-preset-selector'
 import { ZoteExportThemeDialog } from '@/components/zote-export-theme'
+import { ZoteColorPickerRow } from '@/components/zote-color-picker-row'
+import { ZotePromptPreview } from './zote-prompt-preview'
+import { ZotePreviewControls } from './zote-preview-controls'
 
 type ColorKeys =
     | 'AT_COLOR'
@@ -33,8 +35,8 @@ type GitIconKeys =
     | 'REMOTE_ICON'
     | 'GIT_ICON'
 
-type ColorState = Record<ColorKeys, string | undefined>
-type IconState = Record<GitIconKeys, string | undefined>
+export type ColorState = Record<ColorKeys, string | undefined>
+export type IconState = Record<GitIconKeys, string | undefined>
 
 const defaultColors: ColorState = {
     AT_COLOR: "#FFFFFF",
@@ -98,6 +100,14 @@ export const Zote: React.FC = () => {
     const [selectedTheme, setSelectedTheme] = useState<string>('Custom')
     const [customColors, setCustomColors] = useState<ColorState>(defaultColors)
 
+    const [gitRepo, setGitRepo] = useState<boolean>(false)
+    const [merging, setMerging] = useState<boolean>(false)
+    const [untracked, setUntracked] = useState<boolean>(false)
+    const [staged, setStaged] = useState<boolean>(false)
+    const [modified, setModified] = useState<boolean>(false)
+    const [ahead, setAhead] = useState<string>("")
+    const [behind, setBehind] = useState<string>("")
+
     const handleColorChange = (key: keyof ColorState, value: string) => {
         const updated = { ...colors, [key]: value }
         setColors(updated)
@@ -125,14 +135,43 @@ export const Zote: React.FC = () => {
     return (
         <div className="max-w-3xl p-6 mx-auto">
             <h2 className="text-3xl font-black tracking-tighter mb-6">zote: zsh ocodo prompt theme editor</h2>
-            <div className="bg-black text-white rounded-xl border border-zinc-700 p-4 my-4">
-                <ZotePromptPreview colors={colors} icons={icons} host={selectedTheme.toLowerCase()} />
-            </div>
             <ZotePresetSelector
                 selected={selectedTheme}
                 onSelect={handlePresetSelect}
                 customColors={customColors}
             />
+            <div className="bg-black text-white rounded-xl border border-zinc-700 p-4 my-4">
+                <ZotePreviewControls
+                    gitRepo={gitRepo}
+                    setGitRepo={setGitRepo}
+                    merging={merging}
+                    setMerging={setMerging}
+                    untracked={untracked}
+                    setUntracked={setUntracked}
+                    modified={modified}
+                    setModified={setModified}
+                    staged={staged}
+                    setStaged={setStaged}
+                    ahead={ahead}
+                    setAhead={setAhead}
+                    behind={behind}
+                    setBehind={setBehind}
+                />
+            </div>
+            <div className="bg-black text-white rounded-xl border border-zinc-700 p-4 my-4">
+                <ZotePromptPreview
+                    colors={colors}
+                    icons={icons}
+                    host={selectedTheme.toLowerCase()}
+                    gitRepo={gitRepo}
+                    merging={merging}
+                    untracked={untracked}
+                    modified={modified}
+                    staged={staged}
+                    ahead={ahead}
+                    behind={behind}
+                />
+            </div>
             <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-4 m-6">
                 {visibleColorKeys.map(key => (
                     <ZoteColorPickerRow
@@ -144,156 +183,6 @@ export const Zote: React.FC = () => {
                 ))}
             </div>
             <ZoteExportThemeDialog colors={colors} defaultName={selectedTheme} />
-        </div>
-    )
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// Subcomponents
-// ─────────────────────────────────────────────────────────────────────────────
-
-type ZoteColorPickerRowProps = {
-    label: string
-    value: string | undefined
-    onChange: (newColor: string) => void
-}
-
-import { useRef } from "react";
-import Case from 'case'
-import { icons } from 'lucide-react'
-
-const ZoteColorPickerRow: React.FC<ZoteColorPickerRowProps> = ({ label, value, onChange }) => {
-    const inputRef = useRef<HTMLInputElement>(null);
-    const gitIconColorKeys = [
-        'AHEAD_COLOR',
-        'BEHIND_COLOR',
-        'MERGING_COLOR',
-        'UNTRACKED_COLOR',
-        'MODIFIED_COLOR',
-        'STAGED_COLOR',
-    ]
-    const presentationName = (name: string) => {
-        name = gitIconColorKeys.includes(name) ? `GIT_${name}` : name
-        return Case.capital(name)
-    }
-
-    const handleClick = () => {
-        inputRef.current?.click();
-    };
-
-    return (
-        <Card className="p-4 shadow-md hover:shadow-lg rounded-md flex flex-col justify-center items-center">
-            <div className="text-xs mb-2">{presentationName(label)}</div>
-            <div className="ml-2 font-mono text-sm mb-2">{value}</div>
-
-            <div className="w-12 h-8" onClick={handleClick} style={{ color: value }}>
-                <svg
-                    viewBox="0 0 48 48"
-                    className="w-full h-full cursor-pointer"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-label={`Select color ${value}`}
-                    role="button"
-                >
-                    <rect
-                        x="0"
-                        y="0"
-                        width="48"
-                        height="24"
-                        rx="12"
-                        ry="12"
-                        fill="currentColor"
-                    />
-                </svg>
-            </div>
-
-            <input
-                ref={inputRef}
-                type="color"
-                value={value}
-                onChange={e => onChange(e.target.value)}
-                className="hidden"
-            />
-        </Card>
-    );
-};
-
-
-type ZotePromptPreviewProps = {
-    colors: ColorState
-    icons: IconState
-    host: string
-}
-
-const ZotePromptPreview: React.FC<ZotePromptPreviewProps> = ({ colors, icons, host }) => {
-    const {
-        AT_COLOR,
-        BRACKET_COLOR,
-        NAME_COLOR,
-        MACHINE_COLOR,
-        REMOTE_COLOR,
-        TIME_COLOR,
-        PATH_COLOR,
-        DATE_COLOR,
-        RVM_COLOR,
-        GIT_ICON_COLOR,
-        AHEAD_COLOR,
-        BEHIND_COLOR,
-        MERGING_COLOR,
-        UNTRACKED_COLOR,
-        MODIFIED_COLOR,
-        STAGED_COLOR,
-        GIT_LOCATION_COLOR,
-    } = colors
-
-    const {
-        AHEAD_ICON,
-        BEHIND_ICON,
-        MERGING_ICON,
-        UNTRACKED_ICON,
-        MODIFIED_ICON,
-        STAGED_ICON,
-        REMOTE_ICON,
-        GIT_ICON
-    } = icons
-
-    return (
-        <div className="font-mono text-lg leading-relaxed">
-            <div>
-                <span style={{ color: BRACKET_COLOR }}>[</span>
-                <span style={{ color: BRACKET_COLOR }}>% </span>
-                <span style={{ color: NAME_COLOR }}>ocodo</span>
-                <span style={{ color: AT_COLOR }}>@</span>
-                <span style={{ color: MACHINE_COLOR }}>{host}</span>
-                <span style={{ color: REMOTE_COLOR }}>{REMOTE_ICON}</span>
-                <span style={{ color: BRACKET_COLOR }}>|</span>
-                <span style={{ color: DATE_COLOR }}>Mon</span>
-                <span style={{ color: BRACKET_COLOR }}>|</span>
-                <span style={{ color: TIME_COLOR }}>09:11AM</span>
-                <span style={{ color: BRACKET_COLOR }}>]</span>
-                <span style={{ color: BRACKET_COLOR }}>[</span>
-                <span style={{
-                    color: GIT_ICON_COLOR,
-                    marginRight: '0.25em'
-                }}>{GIT_ICON}</span>
-                <span style={{color: MERGING_COLOR}}>{MERGING_ICON}</span>
-                <span style={{color: UNTRACKED_COLOR}}>{UNTRACKED_ICON}</span>
-                <span style={{color: MODIFIED_COLOR}}>{MODIFIED_ICON}</span>
-                <span style={{color: STAGED_COLOR}}>{STAGED_ICON}</span>
-                <span style={{color: AHEAD_COLOR}}>{AHEAD_ICON}</span>
-                <span style={{color: AHEAD_COLOR}}>2</span>
-                <span style={{color: BEHIND_COLOR}}>{BEHIND_ICON}</span>
-                <span style={{color: BEHIND_COLOR}}>2</span>
-                <span style={{
-                    marginLeft: '0.25em',
-                    color: GIT_LOCATION_COLOR
-                    }}>main</span>
-                <span style={{ color: BRACKET_COLOR }}>]</span>
-            </div>
-            <div>
-                <span style={{ color: BRACKET_COLOR }}>[</span>
-                <span style={{ color: PATH_COLOR }}>~/workspace/zote</span>
-                <span style={{ color: BRACKET_COLOR }}>]</span>
-            </div>
         </div>
     )
 }
