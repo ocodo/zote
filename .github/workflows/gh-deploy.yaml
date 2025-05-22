@@ -42,12 +42,14 @@ jobs:
       - name: Correct asset paths
         run: |
             cd ./dist
-            ls -lah
-            ls -lah assets
-            tree
             sed -iBAK 's|="/|="/zote/|g' assets/index*css
             sed -iBAK 's|="/|="/zote/|g' index.html
+            ls -lah assets
+
             cat index.html
+            echo '---- CSS ----'
+            cat assets/index*css
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
