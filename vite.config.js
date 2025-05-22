@@ -15,5 +15,7 @@ export default defineConfig({
   },
   server: {
     allowedHosts: ['zote.hub']
-  }
+  },
+  build: { outDir: '..' },
+  base: '/zote/'
 });
