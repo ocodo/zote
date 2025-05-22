@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "vite dev",
-    "build": "vite build",
-    "start": "vite preview",
-    "test": "jest",
-    "lint": "eslint . --fix",
+    "dev": "npx vite dev",
+    "build": "npx vite build",
+    "start": "npx vite preview",
+    "test": "npx jest",
+    "lint": "npx eslint . --fix",
     "deploy-gh-pages": "bin/deploy-gh-pages.sh"
   },
   "dependencies": {
