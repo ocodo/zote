@@ -7,7 +7,7 @@
     "build": "vite build",
     "start": "vite preview",
     "test": "jest",
-    "lint": "eslint . --fix",
+    "lint": "eslint . --fix"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
