@@ -19,6 +19,7 @@ git branch -D $GH_PAGES_BRANCH || true  # Ignore if local branch doesn't exist
 
 # Build the Vite project
 git checkout main
+npm install
 npx vite build
 # Create a temporary directory for the dist folder (using mktemp)
 TEMP_DIST_DIR="$(mktemp -d ../zote-ghpages-dist-XXXXX)"
