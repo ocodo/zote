@@ -1,5 +1,6 @@
 import { ColorState, IconState } from "@/components/zote"
 import { useGitPreviewState } from "@/context/git-preview-state-context"
+import { getCurrentTime, getCurrentDay } from "@/lib/current-time"
 
 type ZotePromptPreviewProps = {
   colors: ColorState
@@ -63,9 +64,9 @@ export const ZotePromptPreview: React.FC<ZotePromptPreviewProps> = ({
         <span style={{ color: MACHINE_COLOR }}>{host}</span>
         <span style={{ color: REMOTE_COLOR }}>{REMOTE_ICON}</span>
         <span style={{ color: BRACKET_COLOR }}>|</span>
-        <span style={{ color: DATE_COLOR }}>Mon</span>
+        <span style={{ color: DATE_COLOR }}>{getCurrentDay()}</span>
         <span style={{ color: BRACKET_COLOR }}>|</span>
-        <span style={{ color: TIME_COLOR }}>09:11AM</span>
+        <span style={{ color: TIME_COLOR }}>{getCurrentTime()}</span>
         <span style={{ color: BRACKET_COLOR }}>]</span>
         {gitRepo ?
           (<span>
