@@ -15,20 +15,35 @@ GH_PAGES_BRANCH="gh-pages"
 # The name of the remote (e.g., "origin")
 REMOTE="origin"
 
-# Check if gh-pages branch exists
+# Delete the gh-pages branch both locally and remotely if it exists
+echo "Checking if '$GH_PAGES_BRANCH' exists..."
+
 git fetch $REMOTE
-if ! git show-ref --verify --quiet refs/heads/$GH_PAGES_BRANCH; then
-  echo "The branch '$GH_PAGES_BRANCH' does not exist. Creating it."
-  # Create the gh-pages branch from main (or master)
-  git checkout --orphan $GH_PAGES_BRANCH
-  git reset --hard
-  git push $REMOTE $GH_PAGES_BRANCH
-  git checkout main
-else
-  echo "Branch '$GH_PAGES_BRANCH' already exists."
+
+# Check if gh-pages exists locally
+if git show-ref --verify --quiet refs/heads/$GH_PAGES_BRANCH; then
+  echo "Local branch '$GH_PAGES_BRANCH' exists. Deleting it..."
+  git branch -D $GH_PAGES_BRANCH
 fi
 
+# Check if gh-pages exists remotely
+if git show-ref --verify --quiet refs/remotes/$REMOTE/$GH_PAGES_BRANCH; then
+  echo "Remote branch '$GH_PAGES_BRANCH' exists. Deleting it..."
+  git push $REMOTE --delete $GH_PAGES_BRANCH
+fi
+
+# Create the gh-pages branch from main (or master)
+echo "Creating the '$GH_PAGES_BRANCH' branch from main..."
+git checkout main
+git pull $REMOTE main  # Ensure you're up to date with main
+git checkout --orphan $GH_PAGES_BRANCH
+git reset --hard
+
+# Push the new gh-pages branch to the remote and set upstream
+git push --set-upstream $REMOTE $GH_PAGES_BRANCH
+
 # Create a Git worktree for the gh-pages branch
+echo "Creating a Git worktree for '$GH_PAGES_BRANCH'..."
 git worktree add $BUILD_DIR $GH_PAGES_BRANCH
 
 # Build the Vite project
@@ -45,7 +60,7 @@ cd $BUILD_DIR
 # Commit and push the changes
 echo "Committing changes to $GH_PAGES_BRANCH..."
 git add .
-git commit -m "Deploy to gh-pages "
+git commit -m "Deploy to gh-pages"
 git push $REMOTE $GH_PAGES_BRANCH
 
 # Return to the main branch
