@@ -42,7 +42,11 @@ jobs:
       - name: Correct asset paths
         run: |
             cd ./dist
-            sed -iBAK 's|="/|="/zote/|g' */**/*{html,css}
+            ls -lah
+            ls -lah assets
+            tree
+            sed -iBAK 's|="/|="/zote/|g' $(find . -iname "*css")
+            sed -iBAK 's|="/|="/zote/|g' index.html
             cat index.html
       - name: Setup Pages
         uses: actions/configure-pages@v5
