@@ -1,5 +1,6 @@
-import { Switch } from "@/components/ui/switch";
-import { Dispatch, SetStateAction, useEffect } from "react";
+import { Dispatch, SetStateAction } from "react";
+import { Checkbox } from "@/components/ui/checkbox";
+import { cn } from "@/lib/utils";
 
 const ZoteSwitchValue = ({
     onLabel,
@@ -29,7 +30,7 @@ const ZoteSwitchValue = ({
             <span className='text-xs mr-2'>
                 {checked != "" ? onLabel : offLabel}
             </span>
-            <Switch checked={checked != ""} onCheckedChange={toggle} />
+            <Checkbox checked={checked != ""} onCheckedChange={toggle} />
         </div>
     )
 }
@@ -37,22 +38,27 @@ const ZoteSwitchValue = ({
 const ZoteBooleanSwitch = ({
     onLabel,
     offLabel,
+    className,
     checked,
     onCheckedChange
 }: {
     onLabel: string,
-    offLabel?: string | undefined,
+    offLabel?: string,
+    className?: string,
     checked: boolean,
     onCheckedChange: Dispatch<SetStateAction<boolean>>,
 }) => {
+
+    const toggle = () => { onCheckedChange(!checked) }
+
     offLabel = offLabel ? offLabel : onLabel
 
     return (
         <div className="inline-flex mb-2">
-            <span className='text-xs mr-2'>
+            <span className={cn(`text-xs mr-2`,className)}>
                 {checked ? onLabel : offLabel}
             </span>
-            <Switch checked={checked} onCheckedChange={onCheckedChange} />
+            <Checkbox checked={checked} onCheckedChange={toggle} className={cn(className)} />
         </div>
     )
 }
@@ -82,12 +88,17 @@ export const ZotePreviewControls = ({
     setBehind: Dispatch<SetStateAction<string>>,
 }) => (
     <div>
-        <ZoteBooleanSwitch onLabel='git info' checked={gitRepo} onCheckedChange={setGitRepo} />
+        <ZoteBooleanSwitch
+            onLabel="git repo"
+            className="mt-2"
+            checked={gitRepo}
+            onCheckedChange={setGitRepo}
+        />
         {gitRepo ? (
             <div>
                 <div className="bg-black text-white rounded-xl border border-zinc-700 p-4 my-4">
-                    <div className="mb-2 text-lg">Git Info</div>
-                    <div className="flex justify-items-center gap-2">
+                    <div className="mb-1">Git Info</div>
+                    <div className="flex flex-wrap gap-2">
                         <ZoteBooleanSwitch onLabel='merging' checked={merging} onCheckedChange={setMerging} />
                         <ZoteBooleanSwitch onLabel='untracked' checked={untracked} onCheckedChange={setUntracked} />
                         <ZoteBooleanSwitch onLabel='modified' checked={modified} onCheckedChange={setModified} />

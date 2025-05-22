@@ -45,16 +45,12 @@ export const ZotePresetSelector: React.FC<ZotePresetSelectorProps> = ({
   return (
     <div className="mb-6">
       <div className="font-bold mb-2">Presets</div>
-      {/* Shadcn Dialog Wrapper */}
       <Dialog open={open} onOpenChange={setOpen}>
-        {/* Dialog Trigger Button */}
         <DialogTrigger asChild>
           <button className="w-full p-2 border border-zinc-600 rounded-md light:bg-zinc-100 dark:bg-zinc-800  dark:text-white flex justify-between items-center">
             <span>{selected === 'Custom' ? 'Custom' : selected}</span>
           </button>
         </DialogTrigger>
-
-        {/* Dialog Content */}
         <DialogContent className="bg-background text-foreground rounded-md max-h-[70vh] overflow-auto p-4 shadow-lg">
           <DialogTitle>Select a Theme Preset</DialogTitle>
           <DialogDescription>
@@ -85,8 +81,7 @@ export const ZotePresetSelector: React.FC<ZotePresetSelectorProps> = ({
               </span>
             </button>
 
-            {/* Visual separator */}
-            <div className="border-t border-zinc-600 my-2" />
+            <div className="border-t dark:border-zinc-600 border-zinc-400 my-2" />
 
             {zotePresets.map((preset) => (
               <button

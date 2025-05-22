@@ -141,6 +141,18 @@ export const Zote: React.FC = () => {
                 customColors={customColors}
             />
             <div className="bg-black text-white rounded-xl border border-zinc-700 p-4 my-4">
+                <ZotePromptPreview
+                    colors={colors}
+                    icons={icons}
+                    host={selectedTheme.toLowerCase()}
+                    gitRepo={gitRepo}
+                    merging={merging}
+                    untracked={untracked}
+                    modified={modified}
+                    staged={staged}
+                    ahead={ahead}
+                    behind={behind}
+                />
                 <ZotePreviewControls
                     gitRepo={gitRepo}
                     setGitRepo={setGitRepo}
@@ -156,20 +168,6 @@ export const Zote: React.FC = () => {
                     setAhead={setAhead}
                     behind={behind}
                     setBehind={setBehind}
-                />
-            </div>
-            <div className="bg-black text-white rounded-xl border border-zinc-700 p-4 my-4">
-                <ZotePromptPreview
-                    colors={colors}
-                    icons={icons}
-                    host={selectedTheme.toLowerCase()}
-                    gitRepo={gitRepo}
-                    merging={merging}
-                    untracked={untracked}
-                    modified={modified}
-                    staged={staged}
-                    ahead={ahead}
-                    behind={behind}
                 />
             </div>
             <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-4 m-6">
