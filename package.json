@@ -7,7 +7,8 @@
     "build": "vite build",
     "start": "vite preview",
     "test": "jest",
-    "lint": "eslint . --fix"
+    "lint": "eslint . --fix",
+    "deploy-gh-pages": "bin/deploy-gh-pages.sh"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
