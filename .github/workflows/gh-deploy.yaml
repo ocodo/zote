@@ -45,7 +45,7 @@ jobs:
             ls -lah
             ls -lah assets
             tree
-            sed -iBAK 's|="/|="/zote/|g' $(find . -iname "*css")
+            sed -iBAK 's|="/|="/zote/|g' assets/index*css
             sed -iBAK 's|="/|="/zote/|g' index.html
             cat index.html
       - name: Setup Pages
