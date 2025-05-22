@@ -30,7 +30,7 @@ mv -v $BUILD_DIR $TEMP_DIST_DIR
 git checkout --orphan $GH_PAGES_BRANCH
 git rm -rf .
 # Copy the contents of the temporary directory to the Git root
-cp -r $TEMP_DIST_DIR/* $PROJECT_ROOT/
+cp -r $TEMP_DIST_DIR/dist/* $PROJECT_ROOT/
 # Commit and push the changes
 git add .
 git commit -m "Deploy to gh-pages"
