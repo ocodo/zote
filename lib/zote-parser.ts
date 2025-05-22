@@ -11,6 +11,7 @@ function removeEnclosingQuotes(str: string) {
     (str[0] === "'" && str[str.length - 1] === "'")
   ) {
     // Remove the enclosing quotes without using slice or substring
+    // Otherwise High Range Unicode is not handled correctly
     return str.replace(/^['"](.*)['"]$/, '$1');
   }
 
