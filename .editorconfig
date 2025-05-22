@@ -1,0 +1,38 @@
+# EditorConfig is awesome: https://EditorConfig.org
+
+# Top-most EditorConfig file
+root = true
+
+[*]
+end_of_line = lf
+insert_final_newline = true
+indent_style = space  # Use spaces instead of tabs
+indent_size = 2       # Default tab width to 2 spaces
+charset = utf-8       # Use UTF-8 encoding
+
+[.editorconfig]
+indent_size = 2
+
+# Settings for Python files
+[*.py]
+indent_size = 4       # Set tab width to 4 spaces for Python files
+
+# Settings for HTML, XML
+[*.{html,xml}]
+indent_size = 2
+charset = utf-8
+
+# Settings for HAML, Slim
+[*.{haml,slim}]
+indent_size = 2
+charset = utf-8
+
+# Settings for CSS, SCSS, SASS, LESS
+[*.{css,scss,sass,less}]
+indent_size = 2
+charset = utf-8
+
+# Settings for JavaScript, TypeScript, MJS, TSX, JSX
+[*.{js,ts,mjs,tsx,jsx}]
+indent_size = 2
+charset = utf-8
