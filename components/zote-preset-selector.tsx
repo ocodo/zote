@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription, DialogClose } from '@/components/ui/dialog' // Local imports for Shadcn Dialog components
 import { zotePresets } from '@/data/zote-presets'
+import { HugeiconsPackageAdd } from '@/components/hugeicons-package-add'
 
 type ColorRecord = Record<string, string | undefined>
 type ZotePresetSelectorProps = {
@@ -14,17 +15,15 @@ export const ZotePresetSelector: React.FC<ZotePresetSelectorProps> = ({
   onSelect,
   customColors,
 }) => {
-  const [open, setOpen] = useState(false) // Manage dialog state (open or closed)
+  const [open, setOpen] = useState(false)
 
-  // Handle preset selection and close dialog after selection
   const handleSelect = (presetName: string) => {
     onSelect(presetName)
-    setOpen(false)  // Close the dialog after selection
+    setOpen(false)
   }
 
   function renderColorBar(colors: ColorRecord): React.ReactElement {
     const colorKeys = Object.keys(colors);
-    const numColors = colorKeys.length;
     const stripeWidth = 10;
 
     return (
@@ -52,15 +51,6 @@ export const ZotePresetSelector: React.FC<ZotePresetSelectorProps> = ({
         <DialogTrigger asChild>
           <button className="w-full p-2 border border-zinc-600 rounded-md light:bg-zinc-100 dark:bg-zinc-800  dark:text-white flex justify-between items-center">
             <span>{selected === 'Custom' ? 'Custom' : selected}</span>
-            <svg
-              className="w-4 h-4 ml-2 opacity-75"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-            </svg>
           </button>
         </DialogTrigger>
 
@@ -75,20 +65,34 @@ export const ZotePresetSelector: React.FC<ZotePresetSelectorProps> = ({
           <div className="flex flex-col gap-2">
             <button
               onClick={() => handleSelect('Custom')}
-              className={`${
-                selected === 'Custom' ? 'bg-zinc-700' : 'hover:bg-zinc-700 hover:text-zinc-100'
-              } py-2 px-3 rounded-md cursor-pointer flex justify-between items-center`}
+              className={`${selected === 'Custom' ? 'bg-zinc-200 dark:bg-zinc-700' : 'hover:bg-zinc-300 hover:text-zinc-700 dark:hover:bg-zinc-700 dark:hover:text-zinc-100'
+                } py-2 px-3 rounded-md cursor-pointer flex justify-between items-center`}
             >
               <span>Custom</span>
               {renderColorBar(customColors)}
             </button>
 
+            {/* Add new preset button */}
+            <button
+              onClick={() => {
+                // Trigger add new preset dialog or action
+              }}
+              className="py-2 px-3 rounded-md text-left dark:hover:bg-zinc-700 hover:bg-zinc-300 hover:text-zinc-700 dark:hover:text-white flex items-center gap-2"
+            >
+              <HugeiconsPackageAdd />
+              <span className="text-sm font-medium">
+                Add New Preset...
+              </span>
+            </button>
+
+            {/* Visual separator */}
+            <div className="border-t border-zinc-600 my-2" />
+
             {zotePresets.map((preset) => (
               <button
                 key={preset.themeName}
-                onClick={() => handleSelect(preset.themeName)}
-                className={`${
-                  selected === preset.themeName ? 'bg-zinc-700' : 'hover:bg-zinc-700 hover:text-zinc-100'
+                onClick={() => preset.themeName && handleSelect(preset.themeName)}
+                className={`${selected === preset.themeName ? 'bg-zinc-200 dark:bg-zinc-700' : 'hover:bg-zinc-300 hover:text-zinc-700 dark:hover:bg-zinc-700 dark:hover:text-zinc-100'
                 } py-2 px-3 rounded-md cursor-pointer flex justify-between items-center`}
               >
                 <span>{preset.themeName}</span>
