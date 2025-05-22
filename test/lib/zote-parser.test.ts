@@ -85,9 +85,7 @@ source ~/.zsh.d/lib/theme-engine-truecolor.zsh
       GIT_ICON_COLOR: '#FFFFFF',
       GIT_LOCATION_COLOR: 'FFFFFF',
     },
-    icons: {
-
-    },
+    icons: {},
     settings: {},
   }
 
@@ -121,6 +119,12 @@ source ~/.zsh.d/lib/theme-engine-truecolor.zsh
     const parsed = parseZoteTheme(heliosTheme)
     expect(parsed.icons.AHEAD_ICON).toBe('🢁')
     expect(parsed.icons.BEHIND_ICON).toBe('🢃')
+    expect(parsed.icons.MERGING_ICON).toBe(" ")
+    expect(parsed.icons.UNTRACKED_ICON).toBe("●")
+    expect(parsed.icons.MODIFIED_ICON).toBe("●")
+    expect(parsed.icons.STAGED_ICON).toBe("●")
+    expect(parsed.icons.GIT_ICON).toBe(" ")
+    expect(parsed.icons.REMOTE_ICON).toBe(" 󱫋 ")
   })
 
   it('parses colors with correct values for corresponding key', () => {
