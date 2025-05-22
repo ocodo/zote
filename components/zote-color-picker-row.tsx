@@ -2,13 +2,13 @@ import Case from 'case'
 import { useRef } from "react";
 import { Card } from "@/components/ui/card";
 
-type ZoteColorPickerProps = {
+type ZoteColorSwatchProps = {
     label: string
     value: string | undefined
     onChange: (newColor: string) => void
 }
 
-export const ZoteColorPicker: React.FC<ZoteColorPickerProps> = ({ label, value, onChange }) => {
+export const ZoteColorSwatch: React.FC<ZoteColorSwatchProps> = ({ label, value, onChange }) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const gitIconColorKeys = [
         'AHEAD_COLOR',

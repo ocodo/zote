@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { zotePresets } from '@/data/zote-presets'
 import { ZotePresetSelector } from '@/components/zote-preset-selector'
 import { ZoteExportThemeDialog } from '@/components/zote-export-theme'
-import { ZoteColorPicker } from '@/components/zote-color-picker-row'
+import { ZoteColorSwatch } from '@/components/zote-color-picker-row'
 import { ZotePromptPreview } from './zote-prompt-preview'
 import { ZotePreviewControls } from './zote-preview-controls'
 
@@ -142,7 +142,7 @@ export const Zote: React.FC = () => {
       </div>
       <div className="gap-x-2 gap-2 m-6 flex flex-wrap justify-center">
         {visibleColorKeys.map(key => (
-          <ZoteColorPicker
+          <ZoteColorSwatch
             key={key}
             label={key}
             value={colors[key]}
