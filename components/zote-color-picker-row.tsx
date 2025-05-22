@@ -2,13 +2,13 @@ import Case from 'case'
 import { useRef } from "react";
 import { Card } from "@/components/ui/card";
 
-type ZoteColorPickerRowProps = {
+type ZoteColorPickerProps = {
     label: string
     value: string | undefined
     onChange: (newColor: string) => void
 }
 
-export const ZoteColorPickerRow: React.FC<ZoteColorPickerRowProps> = ({ label, value, onChange }) => {
+export const ZoteColorPicker: React.FC<ZoteColorPickerProps> = ({ label, value, onChange }) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const gitIconColorKeys = [
         'AHEAD_COLOR',
@@ -28,13 +28,12 @@ export const ZoteColorPickerRow: React.FC<ZoteColorPickerRowProps> = ({ label, v
     };
 
     return (
-        <Card className="p-4 shadow-md hover:shadow-lg rounded-md flex flex-col justify-center items-center">
-            <div className="text-xs mb-2">{presentationName(label)}</div>
-            <div className="ml-2 font-mono text-sm mb-2">{value}</div>
+        <Card className="w-32 shadow-md hover:shadow-lg rounded-md flex flex-col justify-center items-center">
+            <div className="text-xs font-bold mt-2 mb-2">{presentationName(label)}</div>
 
-            <div className="w-12 h-8" onClick={handleClick} style={{ color: value }}>
+            <div className="h-8" onClick={handleClick} style={{ color: value }}>
                 <svg
-                    viewBox="0 0 48 48"
+                    viewBox="0 0 48 24"
                     className="w-full h-full cursor-pointer"
                     xmlns="http://www.w3.org/2000/svg"
                     aria-label={`Select color ${value}`}
@@ -51,6 +50,8 @@ export const ZoteColorPickerRow: React.FC<ZoteColorPickerRowProps> = ({ label, v
                     />
                 </svg>
             </div>
+
+            <div className="font-mono text-xs mb-2 mt-2">{value}</div>
 
             <input
                 ref={inputRef}
