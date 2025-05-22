@@ -4,70 +4,70 @@ import { cn } from "@/lib/utils";
 import { useGitPreviewState } from "@/context/git-preview-state-context";
 
 const ZoteSwitchValue = ({
-    onLabel,
-    offLabel,
-    checked,
-    offValue,
-    onValue,
-    onCheckedChange,
+  onLabel,
+  offLabel,
+  checked,
+  offValue,
+  onValue,
+  onCheckedChange,
 }: {
-    onLabel: string,
-    offLabel?: string | undefined,
-    checked: string,
-    offValue?: string,
-    onValue: string,
-    onCheckedChange: Dispatch<SetStateAction<string>>,
+  onLabel: string,
+  offLabel?: string | undefined,
+  checked: string,
+  offValue?: string,
+  onValue: string,
+  onCheckedChange: Dispatch<SetStateAction<string>>,
 }) => {
-    offLabel = offLabel
-        ? offLabel
-        : onLabel
+  offLabel = offLabel
+    ? offLabel
+    : onLabel
 
-    const isOn: boolean = checked != ""
+  const isOn: boolean = checked != ""
 
-    const toggle = () => checked == onValue
-        ? onCheckedChange(offValue || "")
-        : onCheckedChange(onValue)
+  const toggle = () => checked == onValue
+    ? onCheckedChange(offValue || "")
+    : onCheckedChange(onValue)
 
-    return (
-        <div className="inline-flex">
-            <Checkbox checked={checked != ""} onCheckedChange={toggle} />
-            <span className='text-xs ml-2'>
-                {checked != ""
-                    ? onLabel
-                    : offLabel}
-            </span>
-        </div>
-    )
+  return (
+    <div className="inline-flex">
+      <Checkbox checked={checked != ""} onCheckedChange={toggle} />
+      <span className='text-xs ml-2'>
+        {checked != ""
+          ? onLabel
+          : offLabel}
+      </span>
+    </div>
+  )
 }
 
 const ZoteBooleanSwitch = ({
-    onLabel,
-    offLabel,
-    className,
-    checked,
-    onCheckedChange
+  onLabel,
+  offLabel,
+  className,
+  checked,
+  onCheckedChange
 }: {
-    onLabel: string,
-    offLabel?: string,
-    className?: string,
-    checked: boolean,
-    onCheckedChange: Dispatch<SetStateAction<boolean>>,
+  onLabel: string,
+  offLabel?: string,
+  className?: string,
+  checked: boolean,
+  onCheckedChange: Dispatch<SetStateAction<boolean>>,
 }) => {
 
-    const toggle = () => { onCheckedChange(!checked) }
+  const toggle = () => { onCheckedChange(!checked) }
 
-    offLabel = offLabel ? offLabel : onLabel
+  offLabel = offLabel ? offLabel : onLabel
 
-    return (
-        <div className="inline-flex mb-2">
-            <Checkbox checked={checked} onCheckedChange={toggle} className={cn(className)} />
-            <span className={cn(`text-xs ml-2`, className)}>
-                {checked
-                    ? onLabel
-                    : offLabel}
-            </span>
-        </div>
-    )
+  return (
+    <div className="inline-flex mb-2">
+      <Checkbox checked={checked} onCheckedChange={toggle} className={cn(className)} />
+      <span className={cn(`text-xs ml-2`, className)}>
+        {checked
+          ? onLabel
+          : offLabel}
+      </span>
+    </div>
+  )
 }
 
 export const ZotePreviewControls = () => {
