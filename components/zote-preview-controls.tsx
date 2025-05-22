@@ -89,8 +89,8 @@ export const ZotePreviewControls = ({
 }) => (
     <div>
         <ZoteBooleanSwitch
-            onLabel="git repo"
-            className="mt-2"
+            onLabel=" "
+            className="font-mono text-sm mr-3 mt-3"
             checked={gitRepo}
             onCheckedChange={setGitRepo}
         />
