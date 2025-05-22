@@ -3,12 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "npx vite dev",
-    "build": "npx vite build",
-    "start": "npx vite preview",
-    "test": "npx jest",
-    "lint": "npx eslint . --fix",
-    "deploy-gh-pages": "bin/deploy-gh-pages.sh"
+    "dev": "vite dev",
+    "build": "vite build",
+    "start": "vite preview",
+    "test": "jest",
+    "lint": "eslint . --fix",
+    "gh-pages-deploy": "VITE_DEPLOY_ENV=github gh-pages -d dist"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
@@ -66,6 +66,7 @@
     "@types/react-dom": "^19",
     "@vitejs/plugin-react": "^4.4.1",
     "eslint": "^9.24.0",
+    "gh-pages": "^6.3.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "postcss": "^8",
