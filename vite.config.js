@@ -15,6 +15,5 @@ export default defineConfig({
   },
   server: {
     allowedHosts: ['zote.hub']
-  },
-  base: process.env.VITE_DEPLOY_ENV === 'github' ? '/zote/' : '/'
+  }
 });

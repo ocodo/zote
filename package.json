@@ -8,7 +8,8 @@
     "start": "vite preview",
     "test": "jest",
     "lint": "eslint . --fix",
-    "gh-pages-deploy": "VITE_DEPLOY_ENV=github vite build && gh-pages -d dist"
+    "gh-pages-deploy": "vite build && gh-pages --dest './zote/' --dist dist"
+
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
