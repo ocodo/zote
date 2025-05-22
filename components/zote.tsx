@@ -128,7 +128,7 @@ export const Zote: React.FC = () => {
 
         const preset = zotePresets.find((p) => p.themeName === presetName)
         if (preset) {
-            setColors(preset.colors)
+            setColors(preset.colors as ColorState)
         }
 
     }
