@@ -100,14 +100,6 @@ export const Zote: React.FC = () => {
     const [selectedTheme, setSelectedTheme] = useState<string>('Custom')
     const [customColors, setCustomColors] = useState<ColorState>(defaultColors)
 
-    const [gitRepo, setGitRepo] = useState<boolean>(false)
-    const [merging, setMerging] = useState<boolean>(false)
-    const [untracked, setUntracked] = useState<boolean>(false)
-    const [staged, setStaged] = useState<boolean>(false)
-    const [modified, setModified] = useState<boolean>(false)
-    const [ahead, setAhead] = useState<string>("")
-    const [behind, setBehind] = useState<string>("")
-
     const handleColorChange = (key: keyof ColorState, value: string) => {
         const updated = { ...colors, [key]: value }
         setColors(updated)
@@ -141,34 +133,12 @@ export const Zote: React.FC = () => {
                 customColors={customColors}
             />
             <div className="bg-black text-white rounded-xl border border-zinc-700 p-4 my-4">
-                <ZotePromptPreview
-                    colors={colors}
-                    icons={icons}
-                    host={selectedTheme.toLowerCase()}
-                    gitRepo={gitRepo}
-                    merging={merging}
-                    untracked={untracked}
-                    modified={modified}
-                    staged={staged}
-                    ahead={ahead}
-                    behind={behind}
-                />
-                <ZotePreviewControls
-                    gitRepo={gitRepo}
-                    setGitRepo={setGitRepo}
-                    merging={merging}
-                    setMerging={setMerging}
-                    untracked={untracked}
-                    setUntracked={setUntracked}
-                    modified={modified}
-                    setModified={setModified}
-                    staged={staged}
-                    setStaged={setStaged}
-                    ahead={ahead}
-                    setAhead={setAhead}
-                    behind={behind}
-                    setBehind={setBehind}
-                />
+                    <ZotePromptPreview
+                        colors={colors}
+                        icons={icons}
+                        host={selectedTheme.toLowerCase()}
+                    />
+                    <ZotePreviewControls />
             </div>
             <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-4 m-6">
                 {visibleColorKeys.map(key => (

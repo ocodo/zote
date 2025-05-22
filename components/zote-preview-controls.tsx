@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { cn } from "@/lib/utils";
+import { useGitPreviewState } from "@/context/git-preview-state-context";
 
 const ZoteSwitchValue = ({
     onLabel,
@@ -13,24 +14,28 @@ const ZoteSwitchValue = ({
     onLabel: string,
     offLabel?: string | undefined,
     checked: string,
-    offValue: string,
+    offValue?: string,
     onValue: string,
     onCheckedChange: Dispatch<SetStateAction<string>>,
 }) => {
-    offLabel = offLabel ? offLabel : onLabel
+    offLabel = offLabel
+        ? offLabel
+        : onLabel
 
     const isOn: boolean = checked != ""
 
-    const toggle = () => checked == onValue ?
-        onCheckedChange(offValue) :
-        onCheckedChange(onValue)
+    const toggle = () => checked == onValue
+        ? onCheckedChange(offValue || "")
+        : onCheckedChange(onValue)
 
     return (
         <div className="inline-flex">
-            <span className='text-xs mr-2'>
-                {checked != "" ? onLabel : offLabel}
-            </span>
             <Checkbox checked={checked != ""} onCheckedChange={toggle} />
+            <span className='text-xs ml-2'>
+                {checked != ""
+                    ? onLabel
+                    : offLabel}
+            </span>
         </div>
     )
 }
@@ -55,59 +60,57 @@ const ZoteBooleanSwitch = ({
 
     return (
         <div className="inline-flex mb-2">
-            <span className={cn(`text-xs mr-2`,className)}>
-                {checked ? onLabel : offLabel}
-            </span>
             <Checkbox checked={checked} onCheckedChange={toggle} className={cn(className)} />
+            <span className={cn(`text-xs ml-2`, className)}>
+                {checked
+                    ? onLabel
+                    : offLabel}
+            </span>
         </div>
     )
 }
 
-export const ZotePreviewControls = ({
-    gitRepo, setGitRepo,
-    merging, setMerging,
-    untracked, setUntracked,
-    modified, setModified,
-    staged, setStaged,
-    ahead, setAhead,
-    behind, setBehind
-}: {
-    gitRepo: boolean,
-    setGitRepo: Dispatch<SetStateAction<boolean>>,
-    merging: boolean,
-    setMerging: Dispatch<SetStateAction<boolean>>,
-    untracked: boolean,
-    setUntracked: Dispatch<SetStateAction<boolean>>,
-    modified: boolean,
-    setModified: Dispatch<SetStateAction<boolean>>,
-    staged: boolean,
-    setStaged: Dispatch<SetStateAction<boolean>>,
-    ahead: string,
-    setAhead: Dispatch<SetStateAction<string>>,
-    behind: string,
-    setBehind: Dispatch<SetStateAction<string>>,
-}) => (
+export const ZotePreviewControls = () => {
+  const {
+    gitRepo,
+    setGitRepo,
+    merging,
+    setMerging,
+    untracked,
+    setUntracked,
+    modified,
+    setModified,
+    staged,
+    setStaged,
+    ahead,
+    setAhead,
+    behind,
+    setBehind,
+  } = useGitPreviewState();
+
+  return (
     <div>
-        <ZoteBooleanSwitch
-            onLabel=" "
-            className="font-mono text-sm mr-3 mt-3"
-            checked={gitRepo}
-            onCheckedChange={setGitRepo}
-        />
-        {gitRepo ? (
-            <div>
-                <div className="bg-black text-white rounded-xl border border-zinc-700 p-4 my-4">
-                    <div className="mb-1">Git Info</div>
-                    <div className="flex flex-wrap gap-2">
-                        <ZoteBooleanSwitch onLabel='merging' checked={merging} onCheckedChange={setMerging} />
-                        <ZoteBooleanSwitch onLabel='untracked' checked={untracked} onCheckedChange={setUntracked} />
-                        <ZoteBooleanSwitch onLabel='modified' checked={modified} onCheckedChange={setModified} />
-                        <ZoteBooleanSwitch onLabel='staged' checked={staged} onCheckedChange={setStaged} />
-                        <ZoteSwitchValue onLabel="ahead" onValue="1" offValue="" checked={ahead} onCheckedChange={setAhead} />
-                        <ZoteSwitchValue onLabel="behind" onValue="1" offValue="" checked={behind} onCheckedChange={setBehind} />
-                    </div>
-                </div>
-            </div>
-        ) : ''}
+      <ZoteBooleanSwitch
+        onLabel=" "
+        className="font-mono text-sm mt-3"
+        checked={gitRepo}
+        onCheckedChange={setGitRepo}
+      />
+      {gitRepo && (
+        <div className="bg-black text-white rounded-xl border border-zinc-700 p-4 my-4">
+          <div className="mb-3 font-mono text-4xl">
+             <span className="text-orange-700 ml-2"> </span>
+          </div>
+          <div className="flex flex-wrap gap-4">
+            <ZoteBooleanSwitch onLabel="merging" checked={merging} onCheckedChange={setMerging} />
+            <ZoteBooleanSwitch onLabel="untracked" checked={untracked} onCheckedChange={setUntracked} />
+            <ZoteBooleanSwitch onLabel="modified" checked={modified} onCheckedChange={setModified} />
+            <ZoteBooleanSwitch onLabel="staged" checked={staged} onCheckedChange={setStaged} />
+            <ZoteSwitchValue onLabel="ahead" onValue="1" checked={ahead} onCheckedChange={setAhead} />
+            <ZoteSwitchValue onLabel="behind" onValue="1" checked={behind} onCheckedChange={setBehind} />
+          </div>
+        </div>
+      )}
     </div>
-)
+  );
+};

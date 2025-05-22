@@ -3,7 +3,7 @@ import { Menu, Moon, Sun } from 'lucide-react'
 import { toast } from 'sonner'
 import { ZoteIcon } from '@/components/zote-icon'
 import { useContext, useEffect } from 'react'
-import { ThemeContext } from './theme-provider'
+import { ThemeContext } from '../context/theme-provider'
 
 interface HeadingProps {
   title: string

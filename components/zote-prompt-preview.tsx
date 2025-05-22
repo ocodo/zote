@@ -1,30 +1,27 @@
 import { ColorState, IconState } from "@/components/zote"
+import { useGitPreviewState } from "@/context/git-preview-state-context"
 
 type ZotePromptPreviewProps = {
     colors: ColorState
     icons: IconState
     host: string
-    gitRepo: boolean
-    merging: boolean
-    untracked: boolean
-    modified: boolean
-    staged: boolean
-    ahead: string
-    behind: string
 }
 
 export const ZotePromptPreview: React.FC<ZotePromptPreviewProps> = ({
     colors,
     icons,
     host,
-    gitRepo,
-    merging,
-    untracked,
-    modified,
-    staged,
-    ahead,
-    behind
 }) => {
+    const {
+        gitRepo, setGitRepo,
+        merging, setMerging,
+        untracked, setUntracked,
+        modified, setModified,
+        staged, setStaged,
+        ahead, setAhead,
+        behind, setBehind,
+    } = useGitPreviewState();
+
     const {
         AT_COLOR,
         BRACKET_COLOR,
@@ -36,13 +33,13 @@ export const ZotePromptPreview: React.FC<ZotePromptPreviewProps> = ({
         DATE_COLOR,
         RVM_COLOR,
         GIT_ICON_COLOR,
+        GIT_LOCATION_COLOR,
         AHEAD_COLOR,
         BEHIND_COLOR,
         MERGING_COLOR,
         UNTRACKED_COLOR,
         MODIFIED_COLOR,
         STAGED_COLOR,
-        GIT_LOCATION_COLOR,
     } = colors
 
     const {
