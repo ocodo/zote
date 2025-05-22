@@ -35,8 +35,8 @@ type GitIconKeys =
     | 'REMOTE_ICON'
     | 'GIT_ICON'
 
-export type ColorState = Record<ColorKeys, string | undefined>
-export type IconState = Record<GitIconKeys, string | undefined>
+export type ColorState = Record<ColorKeys, string>
+export type IconState = Record<GitIconKeys, string>
 
 const defaultColors: ColorState = {
     AT_COLOR: "#FFFFFF",
@@ -182,7 +182,7 @@ export const Zote: React.FC = () => {
                     />
                 ))}
             </div>
-            <ZoteExportThemeDialog colors={colors} defaultName={selectedTheme} />
+            <ZoteExportThemeDialog sections={[colors, icons]} defaultName={selectedTheme} />
         </div>
     )
 }

@@ -1,38 +1,8 @@
 export interface ZotePreset {
-    themeName: string
-    colors: {
-        AT_COLOR: string | undefined
-        BRACKET_COLOR: string | undefined
-        NAME_COLOR: string | undefined
-        MACHINE_COLOR: string | undefined
-        TIME_COLOR: string | undefined
-        DATE_COLOR: string | undefined
-        PATH_COLOR: string | undefined
-        RVM_COLOR: string | undefined
-        AHEAD_COLOR: string | undefined
-        BEHIND_COLOR: string | undefined
-        MERGING_COLOR: string | undefined
-        UNTRACKED_COLOR: string | undefined
-        MODIFIED_COLOR: string | undefined
-        STAGED_COLOR: string | undefined
-        REMOTE_COLOR: string | undefined
-        GIT_ICON_COLOR: string | undefined
-        GIT_LOCATION_COLOR: string | undefined
-    }
-    icons: {
-        AHEAD_ICON: string | undefined
-        BEHIND_ICON: string | undefined
-        MERGING_ICON: string | undefined
-        UNTRACKED_ICON: string | undefined
-        MODIFIED_ICON: string | undefined
-        STAGED_ICON: string | undefined
-        REMOTE_ICON: string | undefined
-        GIT_ICON: string | undefined
-    }
-    settings: {
-        DIVIDER: string | undefined
-        ZSH_PROMPT_WEEK_DAY: string | undefined
-    }
+  themeName: string | null;
+  colors: Record<string, string>;
+  icons: Record<string, string>;
+  settings: Record<string, string>;
 }
 
 export const zotePresets: ZotePreset[] = [
