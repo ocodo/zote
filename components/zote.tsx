@@ -3,8 +3,10 @@ import { zotePresets } from '@/data/zote-presets'
 import { ZotePresetSelector } from '@/components/zote-preset-selector'
 import { ZoteExportThemeDialog } from '@/components/zote-export-theme'
 import { ZoteColorSwatch } from '@/components/zote-color-picker-row'
-import { ZotePromptPreview } from './zote-prompt-preview'
-import { ZotePreviewControls } from './zote-preview-controls'
+import { ZotePromptPreview } from '@/components/zote-prompt-preview'
+import { ZotePreviewControls } from '@/components/zote-preview-controls'
+import { ZoteNerdIconSearch } from '@/components/zote-nerd-icon-seach'
+
 
 type ColorKeys =
   | 'AT_COLOR'
@@ -133,6 +135,7 @@ export const Zote: React.FC = () => {
   }
   return (
     <div className="max-w-3xl p-6 mx-auto">
+      <ZoteNerdIconSearch />
       <h2 className="text-3xl font-black tracking-tighter mb-6">zote: zsh ocodo prompt theme editor</h2>
       <ZotePresetSelector
         selected={selectedTheme}
