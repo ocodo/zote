@@ -1,8 +1,10 @@
 import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useEffect, useState } from "react"
 
 type NerdIconSearchStateType = {
-  searchText: string
-  setSearchText: Dispatch<SetStateAction<string>>
+  searchText: string | undefined
+  setSearchText: Dispatch<SetStateAction<string | undefined>>
+  searchResults: string[] | undefined
+  setSearchResults: Dispatch<SetStateAction<string[] | undefined>>
 }
 
 const NerdIconSearchStateContext = createContext<NerdIconSearchStateType | undefined>(undefined)
@@ -16,12 +18,16 @@ export const useNerdIconSearchState = (): NerdIconSearchStateType => {
 }
 
 export const NerdIconSearchProvider = ({ children }: { children: ReactNode }) => {
-  const [searchText, setSearchText] = useState("")
+  const [searchText, setSearchText] = useState<string | undefined>()
+  const [searchResults, setSearchResults] = useState<string[] | undefined>()
 
   return (
     <NerdIconSearchStateContext.Provider
       value={{
-        searchText, setSearchText
+        searchText,
+        setSearchText,
+        searchResults,
+        setSearchResults,
       }}>
       {children}
     </NerdIconSearchStateContext.Provider>

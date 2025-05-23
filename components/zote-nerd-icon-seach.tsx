@@ -1,16 +1,25 @@
 import { Input } from "@/components/ui/input"
 import { useNerdIconSearchState } from "@/context/nerd-icon-search-context"
 
+type ZoteNerdIconProps = { glyph: string }
+
+export const ZoteNerdIcon = (props: ZoteNerdIconProps) => {
+  return (
+    <div>{props.glyph}</div>
+  )
+}
+
 export const ZoteNerdIconSearch = () => {
   const {
     searchText,
-    setSearchText
+    setSearchText,
+    searchResults,
   } = useNerdIconSearchState()
 
   const handleSearchChange = (event: any) => setSearchText(event.target.value)
 
   return (
-    <div className="bg-black text-white rounded-xl border border-zinc-700 p-4 my-4">
+    <div className="bg-black text-white rounded-xl border border-zinc-700 p-4 my-4 gap-2">
       <div className="text-xl font-bold flex justify-end flex-wrap gap-x-2 gap-2">
         <Input
           type="search"
@@ -18,6 +27,15 @@ export const ZoteNerdIconSearch = () => {
           onChange={handleSearchChange}
           value={searchText}
         />
+      </div>
+      <div >
+        {
+          searchResults?.map(
+            (glyph) => (
+              <ZoteNerdIcon glyph={glyph} />
+            )
+          )
+        }
       </div>
     </div>
   )
