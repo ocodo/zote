@@ -133,3 +133,7 @@
 .font-sans {
   font-family: HelveticaNeue;
 }
+
+.text-xxs {
+  font-size: 0.65rem;
+}

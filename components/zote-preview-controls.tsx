@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { cn } from "@/lib/utils";
 import { useGitPreviewState } from "@/context/git-preview-state-context";
+import { useSshPreviewState } from "@/context/ssh-preview-state-context";
 
 const ZoteSwitchValue = ({
   onLabel,
@@ -86,16 +87,29 @@ export const ZotePreviewControls = () => {
     setAhead,
     behind,
     setBehind,
-  } = useGitPreviewState();
+  } = useGitPreviewState()
+
+  const {
+    sshPreview,
+    setSshPreview
+  } = useSshPreviewState()
 
   return (
     <div>
-      <ZoteBooleanSwitch
-        onLabel=" "
-        className="font-mono text-sm mt-3"
-        checked={gitRepo}
-        onCheckedChange={setGitRepo}
-      />
+      <div className="flex flex-wrap justify-start gap-x-5">
+        <ZoteBooleanSwitch
+          onLabel=" "
+          className="font-mono text-sm mt-3"
+          checked={gitRepo}
+          onCheckedChange={setGitRepo}
+        />
+        <ZoteBooleanSwitch
+          className="font-mono font-bold text-sm mt-3"
+          onLabel="ssh"
+          checked={sshPreview}
+          onCheckedChange={setSshPreview}
+        />
+      </div>
       {gitRepo && (
         <div className="bg-black text-white rounded-xl border border-zinc-700 p-4 my-4">
           <div className="mb-3 font-mono text-4xl">

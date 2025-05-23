@@ -61,11 +61,7 @@ source ~/.zsh.d/lib/theme-engine-truecolor.zsh
         try {
             await navigator.clipboard.writeText(exportContent)
             setClipboardSuccess(true)
-
-            setTimeout(() => {
-                setClipboardSuccess(false)
-                toast(errorMessage)
-            }, 2000)
+            toast(`Copied ${themeName} to clipboard`)
         } catch (err) {
             toast(errorMessage)
         }
@@ -93,7 +89,7 @@ source ~/.zsh.d/lib/theme-engine-truecolor.zsh
                 </div>
 
                 <div className="space-y-1 bg-zinc-900 text-green-400 font-mono text-sm p-4
-                  rounded-md border border-zinc-700 whitespace-pre-wrap">
+                  rounded-md border border-zinc-700 whitespace-pre-wrap max-h-96 overflow-scroll">
                     <ZoteExportPreview sections={sections} />
                 </div>
 

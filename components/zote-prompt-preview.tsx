@@ -1,5 +1,6 @@
 import { ColorState, IconState } from "@/components/zote"
 import { useGitPreviewState } from "@/context/git-preview-state-context"
+import { useSshPreviewState } from "@/context/ssh-preview-state-context"
 import { getCurrentTime, getCurrentDay } from "@/lib/current-time"
 
 type ZotePromptPreviewProps = {
@@ -21,7 +22,11 @@ export const ZotePromptPreview: React.FC<ZotePromptPreviewProps> = ({
     staged,
     ahead,
     behind,
-  } = useGitPreviewState();
+  } = useGitPreviewState()
+
+  const {
+    sshPreview
+  } = useSshPreviewState()
 
   const {
     AT_COLOR,
@@ -62,7 +67,9 @@ export const ZotePromptPreview: React.FC<ZotePromptPreviewProps> = ({
         <span style={{ color: NAME_COLOR }}>ocodo</span>
         <span style={{ color: AT_COLOR }}>@</span>
         <span style={{ color: MACHINE_COLOR }}>{host}</span>
-        <span style={{ color: REMOTE_COLOR }}>{REMOTE_ICON}</span>
+        {sshPreview && (
+          <span style={{ color: REMOTE_COLOR }}>{REMOTE_ICON}</span>
+        )}
         <span style={{ color: BRACKET_COLOR }}>|</span>
         <span style={{ color: DATE_COLOR }}>{getCurrentDay()}</span>
         <span style={{ color: BRACKET_COLOR }}>|</span>
