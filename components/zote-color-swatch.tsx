@@ -1,5 +1,6 @@
 import Case from 'case'
 import { useRef } from "react";
+import { gitIconColorKeys } from './zote';
 
 type ZoteColorSwatchProps = {
   label: string
@@ -31,16 +32,14 @@ const ColorSwatch = ({ value }: { value: string }) => (
 
 export const ZoteColorSwatch: React.FC<ZoteColorSwatchProps> = ({ label, value, onChange }) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const gitIconColorKeys = [
-    'AHEAD_COLOR',
-    'BEHIND_COLOR',
-    'MERGING_COLOR',
-    'UNTRACKED_COLOR',
-    'MODIFIED_COLOR',
-    'STAGED_COLOR',
-  ]
+
   const presentationName = (name: string) => {
-    name = gitIconColorKeys.includes(name) ? `GIT_${name}` : name
+    name = gitIconColorKeys.includes(name)
+      ? `GIT_${name}`
+      : name
+    name = name == 'REMOTE_COLOR'
+      ? 'SSH:Remote color'
+      : name
     return Case.capital(name)
   }
 
@@ -53,9 +52,9 @@ export const ZoteColorSwatch: React.FC<ZoteColorSwatchProps> = ({ label, value, 
 
       <div className="h-16" style={{ color: value }}>
         {value
-          ? (
-            <ColorSwatch value={value} />
-          ) : <CheckerBoard />}
+          ? <ColorSwatch value={value} />
+          : <CheckerBoard />
+        }
       </div>
 
       <div className='bg-white text-black w-full p-2'>

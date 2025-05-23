@@ -6,6 +6,8 @@ import { ZoteColorSwatch } from '@/components/zote-color-swatch'
 import { ZotePromptPreview } from '@/components/zote-prompt-preview'
 import { ZotePreviewControls } from '@/components/zote-preview-controls'
 import { ZoteNerdIconSearch } from '@/components/zote-nerd-icon-seach'
+import { useGitPreviewState } from '@/context/git-preview-state-context'
+import { useSshPreviewState } from '@/context/ssh-preview-state-context'
 
 
 type ColorKeys =
@@ -94,13 +96,41 @@ const visibleColorKeys: (keyof ColorState)[] = [
   'DATE_COLOR',
   'RVM_COLOR',
   'GIT_ICON_COLOR',
+  'GIT_LOCATION_COLOR',
   'AHEAD_COLOR',
   'BEHIND_COLOR',
   'MERGING_COLOR',
   'UNTRACKED_COLOR',
   'MODIFIED_COLOR',
   'STAGED_COLOR',
+]
+
+const rvmColors: (keyof ColorState)[] = [
+  'RVM_COLOR'
+]
+
+const sshPreviewColors: (keyof ColorState)[] = [
+  'REMOTE_COLOR'
+]
+
+const gitColors: (keyof ColorState)[] = [
+  'GIT_ICON_COLOR',
   'GIT_LOCATION_COLOR',
+  'AHEAD_COLOR',
+  'BEHIND_COLOR',
+  'MERGING_COLOR',
+  'UNTRACKED_COLOR',
+  'MODIFIED_COLOR',
+  'STAGED_COLOR',
+]
+
+export const gitIconColorKeys = [
+  'AHEAD_COLOR',
+  'BEHIND_COLOR',
+  'MERGING_COLOR',
+  'UNTRACKED_COLOR',
+  'MODIFIED_COLOR',
+  'STAGED_COLOR',
 ]
 
 export const Zote: React.FC = () => {
@@ -108,6 +138,22 @@ export const Zote: React.FC = () => {
   const [icons, setIcons] = useState<IconState>(defaultIcons)
   const [selectedTheme, setSelectedTheme] = useState<string>('Custom')
   const [customColors, setCustomColors] = useState<ColorState>(defaultColors)
+
+  const { gitRepo } = useGitPreviewState()
+  const { sshPreview } = useSshPreviewState()
+
+  const previewFilter = (key: ColorKeys) => {
+    if (gitColors.includes(key)) {
+      return key && gitRepo
+    }
+    if (sshPreviewColors.includes(key)) {
+      return key && sshPreview
+    }
+    if (rvmColors.includes(key)) {
+      return key && false
+    }
+    return key
+  }
 
   const handleColorChange = (key: keyof ColorState, value: string) => {
     const updated = { ...colors, [key]: value }
@@ -155,16 +201,17 @@ export const Zote: React.FC = () => {
         <ZotePreviewControls />
       </div>
       <div className="gap-x-2 gap-2 m-6 flex flex-wrap justify-center">
-        {visibleColorKeys.map(key => (
-          <ZoteColorSwatch
-            key={key}
-            label={key}
-            value={colors[key]}
-            onChange={value => handleColorChange(key, value)}
-          />
-        ))}
+        {visibleColorKeys.
+          filter(previewFilter).
+          map(key => (
+            <ZoteColorSwatch
+              key={key}
+              label={key}
+              value={colors[key]}
+              onChange={value => handleColorChange(key, value)}
+            />
+          ))}
       </div>
-
     </div>
   )
 }
