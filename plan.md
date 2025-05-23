@@ -16,6 +16,8 @@
     - [x] Implement general Icon Management UI / integrated into existing color ui.
     - [x] Extend Prompt Preview to reflect Icon Changes.
     - [x] Unit test
+    - [ ] Nerd Font Iconsets deep dive
+    - [ ] Index iconsets / icon names from parent projects
 
 - **Days of Week Customization**
     - [ ] Define `WeekdayPreset` type (using 0-6 representation).
