@@ -19,7 +19,7 @@ export const ZoteNerdIconSearch = () => {
   const handleSearchChange = (event: any) => setSearchText(event.target.value)
 
   return (
-    <div className="bg-black text-white rounded-xl border border-zinc-700 p-4 my-4 gap-2">
+    <div className="bg-background text-foreground rounded-xl border border-zinc-700 p-4 my-4 gap-2">
       <div className="text-xl font-bold flex justify-end flex-wrap gap-x-2 gap-2">
         <Input
           type="search"
