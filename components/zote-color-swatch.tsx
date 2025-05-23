@@ -8,26 +8,8 @@ type ZoteColorSwatchProps = {
 }
 
 const CheckerBoard = () => (
-  <svg
-    className="w-full h-full"
-    xmlns="http://www.w3.org/2000/svg"
-    aria-label={`Select color`}
-    role="button"
-  >
-    <pattern id="checkerboard" width="20" height="20" patternUnits="userSpaceOnUse">
-      <rect x="0" y="0" width="10" height="10" fill="white" />
-      <rect x="10" y="0" width="10" height="10" fill="black" />
-      <rect x="0" y="10" width="10" height="10" fill="black" />
-      <rect x="10" y="10" width="10" height="10" fill="white" />
-    </pattern>
-    <rect
-      x="0"
-      y="0"
-      width="256"
-      height="256"
-      fill="url(checkerboard)"
-    />
-  </svg>
+  <div className='checkerboard w-28 h-16'>
+  </div>
 )
 
 const ColorSwatch = ({ value }: { value: string }) => (
