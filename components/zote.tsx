@@ -72,6 +72,13 @@ const defaultIcons: IconState = {
 /*
 : ${DIVIDER="|"}
 : ${ZSH_PROMPT_WEEK_DAY="%(0w,Sun,)%(1w,Mon,)%(2w,Tue,)%(3w,Wed,)%(4w,Thu,)%(5w,Fri,)%(6w,Sat,)"}
+
+ZSH_PROMPT_WEEK_DAY="%(1w,💀,)%(2w,💊,)%(3w,💉,)%(4w,💥,)%(5w,🔥,)%(6w,😵‍💫,)%(0w,👻)"
+ZSH_PROMPT_WEEK_DAY="%(1w,💊,)%(2w,💊,)%(3w,💊,)%(4w,💊,)%(5w,💊,)%(6w,💊,)%(0w,💊)"
+ZSH_PROMPT_WEEK_DAY="%(1w,🍑,)%(2w,🍒,)%(3w,🍌,)%(4w,🍓,)%(5w,🍍,)%(6w,🍒,)%(0w,💋)"
+ZSH_PROMPT_WEEK_DAY="%(1w,🤦‍♂️,)%(2w,👩‍💻,)%(3w,🏢,)%(4w,🎉,)%(5w,💃,)%(6w,💊,)%(0w,🌞)"
+ZSH_PROMPT_WEEK_DAY="%(1w,🤦‍♂️,)%(2w,👩‍💻,)%(3w,🏢,)%(4w,🎉,)%(5w,💃,)%(6w,🍹,)%(0w,🌞)"
+
 */
 
 const visibleColorKeys: (keyof ColorState)[] = [
