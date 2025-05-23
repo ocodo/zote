@@ -65,7 +65,7 @@ const defaultIcons: IconState = {
   UNTRACKED_ICON: "●",
   MODIFIED_ICON: "●",
   STAGED_ICON: "●",
-  REMOTE_ICON: "🌐",
+  REMOTE_ICON: "  ",
   GIT_ICON: " ",
 }
 
