@@ -115,7 +115,6 @@ export function searchNerdFontByName(
         }
       }
 
-      console.log(`Adding ${key} to results.`)
       results.push({
         name: key,
         code: glyph.code,
