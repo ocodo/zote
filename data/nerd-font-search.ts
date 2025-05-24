@@ -28,7 +28,7 @@ export const nerdFontIconGroupPrefixes = {
   "fa-": "Font Awesome",
   "fae-": "Font Awesome Extension",
   "iec-": "IEC Power Symbols",
-  "linux-": "Linux Distro Icons",
+  "linux-": "Font Logos",
   "md-": "Material Design Icons",
   "oct-": "Octicons",
   "pl-": "Powerline Symbols",
