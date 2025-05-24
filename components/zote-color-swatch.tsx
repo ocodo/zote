@@ -1,11 +1,13 @@
 import Case from 'case'
 import { useRef } from "react";
 import { gitIconColorKeys } from './zote';
+import { cn } from '@/lib/utils';
 
 type ZoteColorSwatchProps = {
   label: string
   value: string | undefined
   onChange: (newColor: string) => void
+  className?: string
 }
 
 const CheckerBoard = () => (
@@ -30,7 +32,7 @@ const ColorSwatch = ({ value }: { value: string }) => (
   </svg>
 )
 
-export const ZoteColorSwatch: React.FC<ZoteColorSwatchProps> = ({ label, value, onChange }) => {
+export const ZoteColorSwatch: React.FC<ZoteColorSwatchProps> = ({ label, value, onChange, className }) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const presentationName = (name: string) => {
@@ -48,7 +50,12 @@ export const ZoteColorSwatch: React.FC<ZoteColorSwatchProps> = ({ label, value, 
   };
 
   return (
-    <div onClick={handleClick} className="cursor-pointer w-28 shadow-md hover:shadow-xl rounded-md flex flex-col justify-center items-center">
+    <div
+      onClick={handleClick}
+      className={cn(
+        "border-s border-b cursor-pointer w-28 shadow-md hover:shadow-xl flex flex-col justify-center items-center",
+        className
+      )}>
 
       <div className="h-16" style={{ color: value }}>
         {value
@@ -59,7 +66,7 @@ export const ZoteColorSwatch: React.FC<ZoteColorSwatchProps> = ({ label, value, 
 
       <div className='bg-white text-black w-full p-2'>
         <div className="text-xxs">{presentationName(label)}</div>
-        <div className="text-xxs font-bold">{value ? value.toLowerCase() : "use default"}</div>
+        <div className="text-xxs font-bold">{value ? value.toLowerCase() : "default"}</div>
       </div>
 
       <input

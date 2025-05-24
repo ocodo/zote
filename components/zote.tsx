@@ -200,7 +200,7 @@ export const Zote: React.FC = () => {
         />
         <ZotePreviewControls />
       </div>
-      <div className="gap-x-2 gap-2 m-6 flex flex-wrap justify-center">
+      <div className="gap-x-0 m-6 flex flex-wrap justify-start">
         {visibleColorKeys.
           filter(previewFilter).
           map(key => (
