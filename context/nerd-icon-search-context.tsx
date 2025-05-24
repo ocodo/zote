@@ -1,17 +1,20 @@
+import { NerdFontSearchResults, nerdSearchDebounced, searchNerdFontByName } from "@/data/nerd-font-search"
+import { debounce } from "@/lib/debounce"
 import {
   createContext,
   Dispatch,
   ReactNode,
   SetStateAction,
   useContext,
+  useEffect,
   useState
 } from "react"
 
 type NerdIconSearchStateType = {
-  searchText: string | undefined
-  setSearchText: Dispatch<SetStateAction<string | undefined>>
-  searchResults: string[] | undefined
-  setSearchResults: Dispatch<SetStateAction<string[] | undefined>>
+  searchText?: string
+  setSearchText: Dispatch<SetStateAction<string>>
+  searchResults?: NerdFontSearchResults
+  setSearchResults: Dispatch<SetStateAction<NerdFontSearchResults | undefined>>
 }
 
 const NerdIconSearchStateContext = createContext<NerdIconSearchStateType | undefined>(undefined)
@@ -25,8 +28,15 @@ export const useNerdIconSearchState = (): NerdIconSearchStateType => {
 }
 
 export const NerdIconSearchProvider = ({ children }: { children: ReactNode }) => {
-  const [searchText, setSearchText] = useState<string | undefined>()
-  const [searchResults, setSearchResults] = useState<string[] | undefined>()
+  const [searchText, setSearchText] = useState<string>("")
+  const [searchResults, setSearchResults] = useState<NerdFontSearchResults>()
+
+  useEffect(() => {
+    if (searchText.length > 2) {
+      console.log(`Searching for ${searchText}`)
+      const results = nerdSearchDebounced(searchText, undefined, setSearchResults)
+    }
+  }, [searchText])
 
   return (
     <NerdIconSearchStateContext.Provider

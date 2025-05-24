@@ -1,29 +1,46 @@
-import { NerdFontGlyphs } from "@/data/nerd-font-glyphs"
+import { nerdFontGlyphs } from "@/data/nerd-font-glyphs"
+import { debounce } from "@/lib/debounce"
 
-type NerdFontGlyph = {
+export type NerdFontGlyph = {
   code: string
   char: string
 }
 
-export type NerdFontGlyphsType = {
+export type NerdFontGlyphs = {
   [key: string]: NerdFontGlyph
 }
 
-type NerdFontHexRange = [string, string] | [string]
+export type NerdFontHexRange = [string, string] | [string]
 
-type NerdFontIconGroupsType = {
+export type NerdFontIconGroupsType = {
   [group: string]: NerdFontHexRange[]
 }
 
-type NerdFontSearchResult = {
+export type NerdFontSearchResult = {
   code: string
   char: string
-  group: string | undefined
+  name: string
+  group?: string
 }
 
-type NerdFontSearchResults = NerdFontSearchResult[]
+export const nerdFontIconGroupPrefixes = {
+  "dev-": "Devicons",
+  "fa-": "Font Awesome",
+  "fae-": "Font Awesome Extension",
+  "iec-": "IEC Power Symbols",
+  "linux-": "Linux Distro Icons",
+  "md-": "Material Design Icons",
+  "oct-": "Octicons",
+  "pl-": "Powerline Symbols",
+  "ple-": "Powerline Extended Symbols",
+  "pom-": "Pomodoro Symbols",
+  "seti-": "Seti-UI",
+  "weather-": "Weather",
+}
 
-export const NerdFontIconGroups: NerdFontIconGroupsType = {
+export type NerdFontSearchResults = NerdFontSearchResult[]
+
+export const nerdFontIconGroups: NerdFontIconGroupsType = {
   "Seti-UI + Custom": [["e5fa", "e6b7"]],
   "Devicons": [["e700", "e8ef"]],
   "Font Awesome": [
@@ -67,7 +84,7 @@ export const NerdFontIconGroups: NerdFontIconGroupsType = {
  * @returns {NerdFontHexRange[]} An array of hex ranges (start, end) for the specified group.
  */
 export function getGlyphGroupRange(groupName: string): NerdFontHexRange[] {
-  return NerdFontIconGroups[groupName] || []
+  return nerdFontIconGroups[groupName] || []
 }
 
 // Function to search for glyphs that match a query
@@ -79,21 +96,17 @@ export function getGlyphGroupRange(groupName: string): NerdFontHexRange[] {
  * @param {NerdFontGlyphsType} [data] - The glyph data to search (defaults to NerdFontGlyphs).
  * @returns {NerdFontSearchResults} An array of matching glyph search results.
  */
-export function searchGlyph(
+export function searchNerdFontByName(
   query: string,
   group?: NerdFontHexRange,
-  data: NerdFontGlyphsType = NerdFontGlyphs
+  data: NerdFontGlyphs = nerdFontGlyphs
 ): NerdFontSearchResults {
-  const queryLower = query.toLowerCase()
   const results: NerdFontSearchResults = []
 
   for (const key in data) {
-    const glyph = data[key]
-    if (
-      glyph.code.toLowerCase().includes(queryLower) ||
-      glyph.char.toLowerCase().includes(queryLower)
-    ) {
-      // If a group is provided, check if the glyph code is in the specified range
+    if (key.includes(query)) {
+      const glyph = data[key]
+
       if (group) {
         const [start, end] = group.length === 2 ? group : [group[0], group[0]]
         if (!(glyph.code >= start && glyph.code <= end)) {
@@ -102,7 +115,9 @@ export function searchGlyph(
         }
       }
 
+      console.log(`Adding ${key} to results.`)
       results.push({
+        name: key,
         code: glyph.code,
         char: glyph.char,
         group: getGlyphGroup(glyph.code)
@@ -113,6 +128,16 @@ export function searchGlyph(
   return results
 }
 
+export const nerdSearchDebounced = debounce(
+  (query, group, setter) => {
+    if (group) {
+      setter(searchNerdFontByName(query, group))
+    } else {
+      setter(searchNerdFontByName(query))
+    }
+  }
+  , 400)
+
 /**
  * Returns the name of the Nerd Font icon group to which the given Unicode hex code belongs.
  * If the code does not match any group, returns `undefined`.
@@ -122,8 +147,8 @@ export function searchGlyph(
 export function getGlyphGroup(code: string): string | undefined {
   const hexCode = code.toLowerCase();
 
-  for (const group in NerdFontIconGroups) {
-    const ranges = NerdFontIconGroups[group];
+  for (const group in nerdFontIconGroups) {
+    const ranges = nerdFontIconGroups[group];
 
     for (const range of ranges) {
       const [start, end] = range.length === 2 ? range : [range[0], range[0]];
