@@ -1,4 +1,6 @@
-export const NerdFontGlyphs = {
+import { NerdFontGlyphsType } from '@/data/nerd-font-groups'
+
+export const NerdFontGlyphs: NerdFontGlyphsType = {
   "cod-account": {"char":"","code":"eb99"},
   "cod-activate_breakpoints": {"char":"","code":"ea97"},
   "cod-add": {"char":"","code":"ea60"},
