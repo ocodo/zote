@@ -23,23 +23,6 @@ export type NerdFontSearchResult = {
   group?: string
 }
 
-export const nerdFontIconGroupPrefixes = {
-  "dev-": "Devicons",
-  "fa-": "Font Awesome",
-  "fae-": "Font Awesome Extension",
-  "iec-": "IEC Power Symbols",
-  "linux-": "Font Logos",
-  "md-": "Material Design Icons",
-  "oct-": "Octicons",
-  "pl-": "Powerline Symbols",
-  "ple-": "Powerline Extended Symbols",
-  "pom-": "Pomodoro Symbols",
-  "seti-": "Seti-UI",
-  "weather-": "Weather",
-}
-
-export type NerdFontSearchResults = NerdFontSearchResult[]
-
 export const nerdFontIconGroups: NerdFontIconGroupsType = {
   "Seti-UI + Custom": [["e5fa", "e6b7"]],
   "Devicons": [["e700", "e8ef"]],
@@ -77,7 +60,68 @@ export const nerdFontIconGroups: NerdFontIconGroupsType = {
   "Progress": [["ee00", "ee0b"]]
 }
 
-// Function to return the NerdFontHexRange for a specific group
+export const nerdFontIconGroupPrefixes = getPrefixGroupMap(nerdFontGlyphs, nerdFontIconGroups);
+
+/**
+ * Builds a lookup table from hex character code (lowercased) to group name.
+ */
+export function buildCodeToGroupMap(
+  groups: NerdFontIconGroupsType
+): Record<string, string> {
+  const codeToGroup: Record<string, string> = {}
+
+  for (const [groupName, ranges] of Object.entries(groups)) {
+    for (const range of ranges) {
+      if (range.length === 1) {
+        codeToGroup[range[0].toLowerCase()] = groupName
+      } else {
+        const [start, end] = range
+        const startInt = parseInt(start, 16)
+        const endInt = parseInt(end, 16)
+        const padLength = Math.max(start.length, end.length)
+
+        for (let i = startInt; i <= endInt; i++) {
+          const hex = i.toString(16).padStart(padLength, "0")
+          codeToGroup[hex.toLowerCase()] = groupName
+        }
+      }
+    }
+  }
+
+  return codeToGroup
+}
+
+/**
+ * Extracts the prefix (before the first "-") from a glyph name, adding a trailing dash.
+ */
+export function extractGlyphPrefix(name: string): string {
+  return name.includes("-") ? name.split("-")[0] + "-" : ""
+}
+
+/**
+ * Returns a mapping of prefix strings (e.g., "ple-") to their group name
+ * by comparing glyph codes with the provided icon group ranges.
+ */
+export function getPrefixGroupMap(
+  glyphs: NerdFontGlyphs,
+  groups: NerdFontIconGroupsType
+): Record<string, string> {
+  const codeToGroup = buildCodeToGroupMap(groups)
+  const prefixToGroup: Record<string, string> = {}
+
+  for (const [name, glyph] of Object.entries(glyphs) as [string, NerdFontGlyph][]) {
+    const prefix = extractGlyphPrefix(name)
+    const group = codeToGroup[glyph.code.toLowerCase()]
+    if (group && !(prefix in prefixToGroup)) {
+      prefixToGroup[prefix] = group
+    }
+  }
+
+  return prefixToGroup
+}
+
+export type NerdFontSearchResults = NerdFontSearchResult[]
+
 /**
  * Returns the Unicode hex ranges for a given Nerd Font icon group.
  * @param {string} groupName - The name of the icon group (e.g., "Font Awesome").
@@ -87,7 +131,6 @@ export function getGlyphGroupRange(groupName: string): NerdFontHexRange[] {
   return nerdFontIconGroups[groupName] || []
 }
 
-// Function to search for glyphs that match a query
 /**
  * Searches for glyphs based on a Unicode hex code or a partial match query.
  * Optionally restricts the search to a specific group of glyphs.
