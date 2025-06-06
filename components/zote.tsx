@@ -9,7 +9,6 @@ import { ZoteNerdIconSearch } from '@/components/zote-nerd-icon-seach'
 import { useGitPreviewState } from '@/context/git-preview-state-context'
 import { useSshPreviewState } from '@/context/ssh-preview-state-context'
 
-
 type ColorKeys =
   | 'AT_COLOR'
   | 'BRACKET_COLOR'
