@@ -2,10 +2,11 @@ import React, { useState, useRef } from "react"
 
 interface FloatingInfoProps {
   body: React.ReactNode
+  onClick: () => void
   children: React.ReactNode
 }
 
-export const FloatBox: React.FC<FloatingInfoProps> = ({ children, body: tooltipBody }) => {
+export const FloatBox: React.FC<FloatingInfoProps> = ({ children, body: tooltipBody, onClick }) => {
   const [visible, setVisible] = useState(false)
   const [tooltipPosition, setTooltipPosition] = useState({ top: 0, left: 0 })
   const targetRef = useRef<HTMLDivElement | null>(null)
@@ -30,6 +31,7 @@ export const FloatBox: React.FC<FloatingInfoProps> = ({ children, body: tooltipB
       ref={targetRef}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onMouseDown={onClick}
       className="inline-block"
     >
       {children}

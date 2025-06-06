@@ -1,5 +1,6 @@
 import { nerdFontGlyphs } from "@/data/nerd-font-glyphs"
 import { debounce } from "@/lib/debounce"
+import { asterixMatch } from "@/data/asterix-search"
 
 export type NerdFontGlyph = {
   code: string
@@ -147,7 +148,7 @@ export function searchNerdFontByName(
   const results: NerdFontSearchResults = []
 
   for (const key in data) {
-    if (key.includes(query)) {
+    if (asterixMatch(query, key)) {
       const glyph = data[key]
 
       if (group) {
