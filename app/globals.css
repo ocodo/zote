@@ -37,8 +37,11 @@
 
 @font-face {
   font-family: "OcodoMonoNerdFont";
-  src: url("/fonts/OcodoMonoNerdFont-Regular.woff2") format("woff2");
+  src: url("/fonts/OcodoMonoNerdFont-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
   font-weight: bold;
+  font-display: swap;
 }
 
 /* Light mode variables */
