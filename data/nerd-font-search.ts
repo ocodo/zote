@@ -148,7 +148,7 @@ export function searchNerdFontByName(
   const results: NerdFontSearchResults = []
 
   for (const key in data) {
-    if (asterixMatch(query, key)) {
+    if (query.length > 0 && asterixMatch(query, key)) {
       const glyph = data[key]
 
       if (group) {

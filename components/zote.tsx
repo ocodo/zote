@@ -179,7 +179,7 @@ export const Zote: React.FC = () => {
 
   }
   return (
-    <div className="max-w-3xl p-6 mx-auto">
+    <div className="max-w-3xl p-6 mx-auto grid col-span-1 gap-y-2">
       <h2 className="text-3xl font-black tracking-tighter mb-6">zote: zsh ocodo prompt theme editor</h2>
       <ZotePresetSelector
         selected={selectedTheme}
@@ -187,10 +187,6 @@ export const Zote: React.FC = () => {
         customColors={customColors}
       />
       <ZoteNerdIconSearch />
-      <ZoteExportThemeDialog
-        sections={[colors, icons]}
-        defaultName={selectedTheme}
-      />
       <div className="bg-black text-white rounded-xl border border-zinc-700 p-4 my-4">
         <ZotePromptPreview
           colors={colors}
@@ -211,6 +207,11 @@ export const Zote: React.FC = () => {
             />
           ))}
       </div>
+      <ZoteExportThemeDialog
+        sections={[colors, icons]}
+        defaultName={selectedTheme}
+      />
+
     </div>
   )
 }

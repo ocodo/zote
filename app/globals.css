@@ -36,11 +36,9 @@
 }
 
 @font-face {
-  font-family: "OcodoMono";
+  font-family: "OcodoMonoNerdFont";
   src: url("/fonts/OcodoMonoNerdFont-Regular.woff2") format("woff2");
   font-weight: bold;
-  font-style: normal;
-  font-display: swap;
 }
 
 /* Light mode variables */
@@ -127,7 +125,7 @@
 }
 
 .font-mono {
-  font-family: OcodoMono;
+  font-family: OcodoMonoNerdFont;
 }
 
 .font-sans {
