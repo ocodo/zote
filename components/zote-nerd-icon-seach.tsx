@@ -1,7 +1,7 @@
 import { Input } from "@/components/ui/input"
 import { useNerdIconSearchState } from "@/context/nerd-icon-search-context"
 import { NerdFontSearchResult } from "@/data/nerd-font-search"
-import { CopyIcon, X } from "lucide-react"
+import { CircleX, CopyIcon, X, XCircle } from "lucide-react"
 import React, { Dispatch, SetStateAction } from "react"
 import { FloatBox } from "@/components/floating-info"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -30,7 +30,7 @@ const CopyableItem: React.FC<CopyableItemProps> = ({ label, text, type, buttonCl
           {label}: <span className="font-mono">{text}</span>
         </div>
       )}
-      {!label && <span className={'icon' == type ? 'font-mono}':''}>{text}</span>}
+      {!label && <span className={'icon' == type ? 'font-mono}' : ''}>{text}</span>}
 
       <Button
         variant="ghost"
@@ -71,7 +71,7 @@ const NerdFontGlyphSelected: React.FC<NerdFontGlyphSelectedProps> = ({
       </CardHeader>
       <CardContent>
         <CopyableItem text={selected.name} type="name" />
-        <CopyableItem text={selected.char} type="icon" buttonClassName="text-8xl font-mono"/>
+        <CopyableItem text={selected.char} type="icon" buttonClassName="text-8xl font-mono" />
         <CopyableItem label="Code" text={selected.code} type="code" />
       </CardContent>
     </Card >
@@ -128,14 +128,17 @@ export const ZoteNerdIconSearch = () => {
 
   return (
     <div className="bg-background text-foreground rounded-xl border border-zinc-800 p-4 gap-4">
-      <div className="text-xl font-bold flex justify-end flex-wrap mb-4">
+      <div className="text-xl font-bold flex justify-end flex-wrap mb-4 relative">
         <Input
           type="search"
-          className="font-thin"
+          className="font-thin pr-10"
           placeholder="Nerd Font icons..."
           onChange={handleSearchChange}
           value={searchText}
         />
+        <span
+          className="absolute cursor-pointer right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 font-mono text-sm pr-2"
+          onMouseDown={() => handleSearchChange({ target: { value: '' } })}></span>
       </div>
       {selected ? (<NerdFontGlyphSelected selected={selected} setSelected={setSelected} />) : ""}
       <div className="overflow-y-scroll max-h-48 mt-2 grid grid-cols-[repeat(auto-fill,_minmax(100px,_1fr))] justify-start">
