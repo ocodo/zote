@@ -37,8 +37,8 @@
 
 @font-face {
   font-family: "OcodoMonoNerdFont";
-  src: url("/fonts/OcodoMonoNerdFont-Bold.woff2") format("woff2");
-  font-weight: 700;
+  src: url("/fonts/OcodoMonoNerdFont-Light.woff2") format("woff2");
+  font-weight: 300;
   font-style: normal;
   font-weight: bold;
   font-display: swap;
